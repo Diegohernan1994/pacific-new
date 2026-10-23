@@ -101,16 +101,10 @@ const N = STAGES.length;
       style="background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.72) 100%), linear-gradient(90deg, rgba(0,0,0,.45), rgba(0,0,0,0) 60%);"
     ></div>
 
-    <!-- Architectural Crosshair Follower Layer (z-index: 3) -->
+    <!-- Architectural Circle Follower Layer (z-index: 3) -->
     <div id="crosshair-box" aria-hidden="true" class="absolute inset-0 pointer-events-none transition-opacity duration-300 z-[3]" style="opacity: 1;">
-      <div id="crosshair-v" class="absolute top-0 bottom-0 left-0 w-[1px] bg-[rgba(255,90,90,0.35)] will-change-transform"></div>
-      <div id="crosshair-h" class="absolute left-0 right-0 top-0 h-[1px] bg-[rgba(255,90,90,0.35)] will-change-transform"></div>
       <div id="crosshair-circle" class="absolute left-0 top-0 w-10 h-10 rounded-full border border-[#AB0000] grid place-items-center will-change-transform">
         <span class="w-1 h-1 rounded-full bg-[#AB0000]"></span>
-      </div>
-      <div id="crosshair-label" class="absolute left-0 top-0 flex items-center gap-2 px-2.5 py-1.5 bg-[#111111]/85 text-white font-mono text-[11px] tracking-wider whitespace-nowrap will-change-transform shadow-md">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#AB0000]"></span>
-        <span id="crosshair-text">22′ 8″ · DRAFTING</span>
       </div>
     </div>
 
