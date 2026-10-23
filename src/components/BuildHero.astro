@@ -187,14 +187,20 @@ const N = STAGES.length;
       ))}
     </div>
 
-    <!-- Initial Scroll Prompt at Stage 0 (z-index: 4) -->
-    <div id="scroll-prompt" class="absolute z-[4] left-0 right-0 bottom-7 justify-center pointer-events-none flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80" style="animation: v4Rise 1s var(--ease-out) 0.6s both;">
+    <!-- Initial Scroll Prompt at Stage 0 (z-index: 5) -->
+    <button 
+      type="button" 
+      id="scroll-prompt" 
+      class="absolute z-[5] left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-2 pointer-events-auto" 
+      style="animation: v4Rise 1s var(--ease-out) 0.6s both;"
+      aria-label="Scroll to build stages"
+    >
       <span>SCROLL TO BUILD</span>
-      <svg class="w-3.5 h-3.5 text-white animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <svg class="w-3.5 h-3.5 text-white animate-bounce pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <line x1="12" y1="5" x2="12" y2="19"></line>
         <polyline points="19 12 12 19 5 12"></polyline>
       </svg>
-    </div>
+    </button>
 
     <!-- Bottom Scrubber Progress Bar (z-index: 4) -->
     <div class="absolute z-[4] left-0 right-0 bottom-0 h-1 bg-white/10">
@@ -206,7 +212,7 @@ const N = STAGES.length;
 
 <!-- BuildHero Client Controller -->
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initBuildHero() {
     const wrap = document.querySelector('.build-hero-wrap');
     const stage = document.getElementById('build-stage');
     const fill = document.getElementById('build-progress-fill');
@@ -356,6 +362,18 @@ const N = STAGES.length;
     window.addEventListener('resize', onScroll);
     updateHero();
 
+    // Click on scroll prompt to jump smoothly to Stage 1 (01 DESIGN & PRE-CONSTRUCTION)
+    if (scrollPrompt) {
+      scrollPrompt.addEventListener('click', () => {
+        const total = wrap.offsetHeight - window.innerHeight;
+        const targetTop = wrap.offsetTop + (total * 1.5) / N;
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+      });
+    }
+
     // Click on dots to jump smoothly to stage
     dots.forEach((btn, idx) => {
       btn.addEventListener('click', () => {
@@ -367,5 +385,11 @@ const N = STAGES.length;
         });
       });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBuildHero);
+  } else {
+    initBuildHero();
+  }
 </script>
