@@ -1,0 +1,67 @@
+---
+const GAL = [
+  { src: '/assets/imagery/gallery/02.png', cap: 'Detached ADU, aerial', c: 1, r: 1, cs: 2, rs: 2 },
+  { src: '/assets/imagery/gallery/03.jpg', cap: 'Bathroom', c: 3, r: 1, cs: 1, rs: 2 },
+  { src: '/assets/imagery/gallery/01.png', cap: 'Detached ADU', c: 4, r: 1, cs: 1, rs: 1 },
+  { src: '/assets/imagery/gallery/04.png', cap: 'Kitchen', c: 4, r: 2, cs: 1, rs: 1 },
+  { src: '/assets/imagery/gallery/05.png', cap: 'Kitchen & living', c: 1, r: 3, cs: 1, rs: 1 },
+  { src: '/assets/imagery/gallery/07.png', cap: 'Bedroom', c: 1, r: 4, cs: 1, rs: 1 },
+  { src: '/assets/imagery/gallery/06.png', cap: 'Kitchen', c: 2, r: 3, cs: 2, rs: 2 },
+  { src: '/assets/imagery/gallery/14.png', cap: 'Bathroom', c: 4, r: 3, cs: 1, rs: 2 },
+  { src: '/assets/imagery/gallery/08.png', cap: 'ADU entry', c: 1, r: 5, cs: 2, rs: 2 },
+  { src: '/assets/imagery/gallery/16.png', cap: 'Bedroom', c: 3, r: 5, cs: 1, rs: 1 },
+  { src: '/assets/imagery/gallery/18.png', cap: 'Kitchen', c: 3, r: 6, cs: 1, rs: 1 },
+  { src: '/assets/imagery/gallery/20.png', cap: 'Bathroom', c: 4, r: 5, cs: 1, rs: 2 }
+];
+---
+
+<section id="projects" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-white text-[#1C1B1A]">
+  <!-- Header -->
+  <div class="flex justify-between items-end gap-8 flex-wrap mb-[clamp(40px,5vw,72px)]">
+    <div class="reveal-item">
+      <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
+        <span class="w-14 h-[1px] bg-[#AB0000]"></span>
+        <span>ADU gallery</span>
+      </div>
+      <h2 class="mt-7 font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] max-w-[900px] text-balance">
+        ADUs we’ve built
+      </h2>
+    </div>
+
+    <div class="reveal-item">
+      <button 
+        type="button" 
+        onclick="window.go('contact')"
+        class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[26px] py-[17px] bg-[#111111] text-white cursor-pointer transition-colors duration-300 hover:bg-[#AB0000]"
+      >
+        <span>Start your ADU</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Bento Grid -->
+  <div class="v5-gal grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[clamp(160px,17vw,280px)] gap-3">
+    {GAL.map((item, idx) => (
+      <div 
+        class="reveal-item min-w-0" 
+        style={`grid-column: ${item.c} / span ${item.cs}; grid-row: ${item.r} / span ${item.rs}; transition-delay: ${(idx % 4) * 80}ms;`}
+      >
+        <figure class="relative m-0 w-full h-full overflow-hidden bg-[#EFECE7] group cursor-pointer">
+          <img 
+            src={item.src} 
+            alt={item.cap} 
+            class="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <figcaption class="absolute inset-x-0 bottom-0 pt-10 pb-4 px-4.5 bg-gradient-to-t from-black/80 to-transparent text-white text-[12px] font-semibold tracking-[0.16em] uppercase flex justify-between items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+            <span>{item.cap}</span>
+            <svg class="w-4 h-4 text-white flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </figcaption>
+        </figure>
+      </div>
+    ))}
+  </div>
+</section>

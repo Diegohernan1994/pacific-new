@@ -1,0 +1,106 @@
+---
+const FAQS = [
+  {
+    q: 'Can I build an ADU on my property?',
+    a: 'Most single-family lots in California qualify. State law allows an ADU and a JADU on most single-family lots. We confirm setbacks, utilities and zoning during a free site visit.'
+  },
+  {
+    q: 'Do I need to add parking?',
+    a: 'Often not. California waives ADU parking in many cases, including lots within half a mile of public transit and garage conversions.'
+  },
+  {
+    q: 'Will my property taxes go up?',
+    a: 'Only the new ADU is assessed and added to your existing assessment. Your main home is not reassessed.'
+  },
+  {
+    q: 'Can I rent out my ADU?',
+    a: 'Yes. ADUs can be rented long-term. Many cities restrict short-term rentals under 30 days.'
+  },
+  {
+    q: 'Do you handle permits?',
+    a: 'Yes. We manage design, engineering, city plan check and permits, and meet the inspector on site through final.'
+  },
+  {
+    q: 'How does $0 down financing work?',
+    a: 'We work with lending partners that can fund construction with no money down, so payments start on a schedule you approve. Terms depend on credit and property.'
+  }
+];
+---
+
+<section id="faq" class="v4-faq px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#F7F5F2] text-[#1C1B1A] grid grid-cols-1 min-[901px]:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-10 min-[901px]:gap-[clamp(32px,6vw,120px)]">
+  
+  <!-- Left Column: Title -->
+  <div class="reveal-item">
+    <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
+      <span class="w-14 h-[1px] bg-[#AB0000]"></span>
+      <span>FAQ</span>
+    </div>
+    <h2 class="mt-7 font-sans font-semibold text-[clamp(32px,3.6vw,60px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A]">
+      ADU questions, answered
+    </h2>
+  </div>
+
+  <!-- Right Column: Accordion List -->
+  <div class="border-t border-[#1C1B1A]">
+    {FAQS.map((item, idx) => (
+      <div class="faq-item border-b border-[#E2DED7]" data-faq-index={idx}>
+        <!-- Accordion Header Button -->
+        <button 
+          type="button"
+          class="faq-trigger w-full flex justify-between items-center gap-6 py-[26px] bg-transparent border-none cursor-pointer text-left font-sans text-[clamp(17px,1.4vw,21px)] font-medium text-[#1C1B1A] transition-colors hover:text-[#AB0000]"
+        >
+          <span>{item.q}</span>
+          <svg class="faq-icon w-5 h-5 text-[#AB0000] flex-shrink-0 transition-transform duration-400 ease-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+
+        <!-- Accordion Body -->
+        <div class="faq-content grid transition-all duration-400 ease-out overflow-hidden" style={idx === 0 ? 'grid-template-rows: 1fr;' : 'grid-template-rows: 0fr;'}>
+          <div class="overflow-hidden">
+            <p class="m-0 mb-7 text-[15px] font-light leading-[1.75] text-[#55524D] max-w-[680px]">
+              {item.a}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<!-- FAQ Controller -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = Array.from(document.querySelectorAll('.faq-item'));
+
+    items.forEach((item, idx) => {
+      const trigger = item.querySelector('.faq-trigger');
+      const content = item.querySelector('.faq-content');
+      const icon = item.querySelector('.faq-icon');
+
+      if (idx === 0 && icon) {
+        icon.style.transform = 'rotate(45deg)';
+      }
+
+      trigger.addEventListener('click', () => {
+        const isOpen = content.style.gridTemplateRows === '1fr';
+
+        // Close all
+        items.forEach(other => {
+          const otherContent = other.querySelector('.faq-content');
+          const otherIcon = other.querySelector('.faq-icon');
+          if (otherContent) otherContent.style.gridTemplateRows = '0fr';
+          if (otherIcon) otherIcon.style.transform = 'none';
+        });
+
+        // Toggle current
+        if (!isOpen) {
+          content.style.gridTemplateRows = '1fr';
+          if (icon) icon.style.transform = 'rotate(45deg)';
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,57 @@
+---
+const MORE = [
+  { name: 'Kitchen Remodeling', src: '/assets/imagery/stock/s05.jpg' },
+  { name: 'Bathroom Remodeling', src: '/assets/imagery/stock/s19.jpg' },
+  { name: 'Room Additions', src: '/assets/imagery/stock/s16.jpg' },
+  { name: 'Garage Remodeling', src: '/assets/imagery/stock/s17.jpg' },
+  { name: 'Landscaping', src: '/assets/imagery/stock/s18.jpg' }
+];
+---
+
+<section id="services" class="px-[clamp(20px,4vw,72px)] py-[clamp(80px,9vw,140px)] bg-white border-t border-[#E2DED7] text-[#1C1B1A]">
+  <!-- Header -->
+  <div class="reveal-item">
+    <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
+      <span class="w-14 h-[1px] bg-[#AB0000]"></span>
+      <span>Also building</span>
+    </div>
+    <h2 class="mt-6 font-sans font-semibold text-[clamp(28px,3vw,48px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A]">
+      Remodels & additions
+    </h2>
+  </div>
+
+  <!-- Cards Grid: 2 columns on mobile, Landscaping spans full width (col-span-2) -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mt-8 sm:mt-12">
+    {MORE.map((item, idx) => {
+      const isLandscaping = idx === 4;
+      return (
+        <div 
+          class={`reveal-item ${isLandscaping ? 'col-span-2 md:col-span-1' : ''}`} 
+          style={`transition-delay: ${idx * 70}ms;`}
+        >
+          <a 
+            href="#contact" 
+            onclick="event.preventDefault(); window.go('contact');"
+            class="block text-[#1C1B1A] group cursor-pointer"
+          >
+            <div class={`overflow-hidden bg-[#EFECE7] ${isLandscaping ? 'aspect-[16/9] md:aspect-[4/5]' : 'aspect-[4/5]'}`}>
+              <img 
+                src={item.src} 
+                alt={item.name} 
+                class="w-full h-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex justify-between items-center gap-1.5 mt-2.5 sm:mt-4 text-[12px] sm:text-[14px] font-medium uppercase tracking-[0.04em] sm:tracking-[0.06em] group-hover:text-[#AB0000] transition-colors leading-tight">
+              <span>{item.name}</span>
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#AB0000] flex-shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+        </div>
+      );
+    })}
+  </div>
+</section>

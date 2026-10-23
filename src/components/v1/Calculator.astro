@@ -1,0 +1,307 @@
+---
+const TYPES_LIST = [
+  'Detached ADU',
+  'Attached ADU',
+  'Garage Conversion',
+  'JADU',
+  'Second-story ADU'
+];
+
+const FINISHES = ['Standard', 'Premium', 'Luxury'];
+---
+
+<section id="calculator" class="px-[clamp(20px,4vw,72px)] pb-[clamp(88px,10vw,160px)] bg-white text-[#1C1B1A]">
+  <!-- Header -->
+  <div class="reveal-item">
+    <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
+      <span class="w-14 h-[1px] bg-[#AB0000]"></span>
+      <span>Cost calculator</span>
+    </div>
+    <h2 class="mt-7 font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] max-w-[900px] text-balance">
+      What will your ADU cost?
+    </h2>
+  </div>
+
+  <!-- Interactive Calculator Grid -->
+  <div class="v4-calc grid grid-cols-1 min-[901px]:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-[clamp(32px,4vw,64px)] mt-[clamp(48px,6vw,80px)] items-stretch">
+    
+    <!-- Left Column: Controls -->
+    <div class="flex flex-col gap-11">
+      
+      <!-- ADU Type Selection -->
+      <div>
+        <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#8C877F] mb-3.5">
+          ADU type
+        </div>
+        <div class="flex flex-wrap gap-2" id="calc-types-group">
+          {TYPES_LIST.map((t, idx) => (
+            <button 
+              type="button" 
+              class={`calc-type-chip px-4 py-3 border font-sans text-[13px] cursor-pointer whitespace-nowrap transition-all duration-200 ${idx === 0 ? 'bg-[#1C1B1A] border-[#1C1B1A] text-white' : 'bg-white border-[#E2DED7] text-[#1C1B1A] hover:border-[#1C1B1A]'}`}
+              data-type={t}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Size Slider -->
+      <div>
+        <div class="flex justify-between items-center text-[11px] font-semibold tracking-[0.2em] uppercase text-[#8C877F] mb-3.5">
+          <span>Size</span>
+          <span id="calc-size-readout" class="text-[#1C1B1A] text-[16px] tracking-normal font-medium">
+            750 sq ft
+          </span>
+        </div>
+        <div class="relative py-1">
+          <input 
+            id="calc-size-slider" 
+            type="range" 
+            min="200" 
+            max="1200" 
+            step="25" 
+            value="750" 
+            class="w-full cursor-pointer h-2 bg-[#E2DED7] rounded-lg appearance-none"
+            style="accent-color: #AB0000; width: 100%;"
+          />
+        </div>
+        <div class="flex justify-between text-[12px] text-[#8C877F] mt-2">
+          <span>200</span>
+          <span id="calc-max-readout">1,200</span>
+        </div>
+      </div>
+
+      <!-- Finish Level Selection -->
+      <div>
+        <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#8C877F] mb-3.5">
+          Finish level
+        </div>
+        <div class="flex flex-wrap gap-2" id="calc-finish-group">
+          {FINISHES.map((f, idx) => (
+            <button 
+              type="button" 
+              class={`calc-finish-chip px-4 py-3 border font-sans text-[13px] cursor-pointer whitespace-nowrap transition-all duration-200 ${idx === 1 ? 'bg-[#1C1B1A] border-[#1C1B1A] text-white' : 'bg-white border-[#E2DED7] text-[#1C1B1A] hover:border-[#1C1B1A]'}`}
+              data-finish={f}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Footnote -->
+      <p class="m-0 text-[13px] font-light leading-[1.7] text-[#8C877F] max-w-[520px]">
+        Illustrative ranges for Southern California. Site work, utilities and city fees vary; your exact price comes after the site visit.
+      </p>
+    </div>
+
+    <!-- Right Column: Live Dynamic Estimate Card -->
+    <div class="bg-[#111111] text-white p-[clamp(32px,4vw,56px)] flex flex-col justify-between gap-7 shadow-2xl">
+      <!-- Build Cost Block -->
+      <div>
+        <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/60 mb-3.5">
+          Estimated build cost
+        </div>
+        <div id="calc-cost-display" class="font-sans font-semibold text-[clamp(40px,4.6vw,72px)] tracking-[-0.02em] leading-none text-white">
+          $266k – $332k
+        </div>
+        <div id="calc-summary-subtext" class="text-[14px] font-light text-white/70 mt-3">
+          Detached ADU · 750 sq ft · Premium
+        </div>
+      </div>
+
+      <!-- Hairline Rule -->
+      <div class="h-[1px] bg-white/15 my-1"></div>
+
+      <!-- Financing Block -->
+      <div id="financing">
+        <div class="flex items-center gap-3">
+          <span class="bg-[#AB0000] text-white px-2.5 py-1.5 text-[11px] font-bold tracking-[0.16em] uppercase">
+            $0 down
+          </span>
+          <span class="font-serif italic text-[26px] text-white">
+            Build now, pay later
+          </span>
+        </div>
+
+        <div class="flex items-baseline gap-2.5 mt-5">
+          <span id="calc-monthly-lo" class="text-[clamp(32px,3vw,48px)] font-semibold text-white">
+            $2,387
+          </span>
+          <span id="calc-monthly-hi" class="text-[14px] text-white/70">
+            – $2,984 / month
+          </span>
+        </div>
+
+        <div class="text-[12px] font-light text-white/60 mt-2.5 leading-[1.6]">
+          Example at 8.99% APR over 20 years, subject to lender approval.
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="mt-4 flex gap-2.5 flex-wrap">
+        <button 
+          type="button" 
+          onclick="window.go('contact')"
+          class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[26px] py-[17px] bg-[#AB0000] text-white cursor-pointer transition-colors duration-300 hover:bg-[#8F0000] active:scale-[0.98]"
+        >
+          <span>Get my exact quote</span>
+          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Range Slider Styling -->
+<style>
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #AB0000;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    margin-top: -6px;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #AB0000;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+</style>
+
+<!-- Calculator Controller -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const RATES = {
+      'Detached ADU': [300, 375],
+      'Attached ADU': [285, 355],
+      'Garage Conversion': [190, 250],
+      'JADU': [170, 230],
+      'Second-story ADU': [340, 420]
+    };
+    const FIN = { Standard: 1, Premium: 1.18, Luxury: 1.4 };
+    const APR = 0.0899, YRS = 20;
+
+    let selectedType = 'Detached ADU';
+    let selectedSize = 750;
+    let selectedFinish = 'Premium';
+
+    const typeChips = Array.from(document.querySelectorAll('.calc-type-chip'));
+    const finishChips = Array.from(document.querySelectorAll('.calc-finish-chip'));
+    const slider = document.getElementById('calc-size-slider');
+    const sizeReadout = document.getElementById('calc-size-readout');
+    const maxReadout = document.getElementById('calc-max-readout');
+    const costDisplay = document.getElementById('calc-cost-display');
+    const summarySubtext = document.getElementById('calc-summary-subtext');
+    const monthlyLo = document.getElementById('calc-monthly-lo');
+    const monthlyHi = document.getElementById('calc-monthly-hi');
+
+    function money(v) {
+      return '$' + Math.round(v / 1000).toLocaleString() + 'k';
+    }
+
+    function updateSliderTrack(val, min, max) {
+      if (!slider) return;
+      const percentage = ((val - min) / (max - min)) * 100;
+      slider.style.background = `linear-gradient(to right, #AB0000 0%, #AB0000 ${percentage}%, #E2DED7 ${percentage}%, #E2DED7 100%)`;
+    }
+
+    function calculate() {
+      const max = selectedType === 'JADU' ? 500 : 1200;
+      if (slider) {
+        slider.max = String(max);
+        if (selectedSize > max) {
+          selectedSize = max;
+          slider.value = String(max);
+        }
+        updateSliderTrack(selectedSize, 200, max);
+      }
+      if (maxReadout) maxReadout.textContent = max.toLocaleString();
+      if (sizeReadout) sizeReadout.textContent = `${selectedSize.toLocaleString()} sq ft`;
+
+      const [rateLo, rateHi] = RATES[selectedType] || [300, 375];
+      const finishMult = FIN[selectedFinish] || 1.18;
+
+      const lo = rateLo * selectedSize * finishMult;
+      const hi = rateHi * selectedSize * finishMult;
+
+      const mr = APR / 12, n = YRS * 12;
+      const calcMo = (v) => (v * mr) / (1 - Math.pow(1 + mr, -n));
+
+      const moLo = Math.round(calcMo(lo));
+      const moHi = Math.round(calcMo(hi));
+
+      if (costDisplay) {
+        costDisplay.textContent = `${money(lo)} – ${money(hi)}`;
+      }
+      if (summarySubtext) {
+        summarySubtext.textContent = `${selectedType} · ${selectedSize.toLocaleString()} sq ft · ${selectedFinish}`;
+      }
+      if (monthlyLo) {
+        monthlyLo.textContent = `$${moLo.toLocaleString()}`;
+      }
+      if (monthlyHi) {
+        monthlyHi.textContent = `– $${moHi.toLocaleString()} / month`;
+      }
+    }
+
+    // Type selection
+    typeChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        selectedType = chip.getAttribute('data-type');
+        typeChips.forEach(c => {
+          c.classList.remove('bg-[#1C1B1A]', 'border-[#1C1B1A]', 'text-white');
+          c.classList.add('bg-white', 'border-[#E2DED7]', 'text-[#1C1B1A]');
+        });
+        chip.classList.remove('bg-white', 'border-[#E2DED7]', 'text-[#1C1B1A]');
+        chip.classList.add('bg-[#1C1B1A]', 'border-[#1C1B1A]', 'text-white');
+        calculate();
+      });
+    });
+
+    // Slider input
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        selectedSize = parseInt(e.target.value, 10);
+        const max = selectedType === 'JADU' ? 500 : 1200;
+        updateSliderTrack(selectedSize, 200, max);
+        calculate();
+      });
+    }
+
+    // Finish selection
+    finishChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        selectedFinish = chip.getAttribute('data-finish');
+        finishChips.forEach(c => {
+          c.classList.remove('bg-[#1C1B1A]', 'border-[#1C1B1A]', 'text-white');
+          c.classList.add('bg-white', 'border-[#E2DED7]', 'text-[#1C1B1A]');
+        });
+        chip.classList.remove('bg-white', 'border-[#E2DED7]', 'text-[#1C1B1A]');
+        chip.classList.add('bg-[#1C1B1A]', 'border-[#1C1B1A]', 'text-white');
+        calculate();
+      });
+    });
+
+    calculate();
+  });
+</script>

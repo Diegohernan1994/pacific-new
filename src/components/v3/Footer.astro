@@ -1,0 +1,133 @@
+---
+const aduTypes = [
+  'Detached ADU',
+  'Attached ADU',
+  'Garage Conversion',
+  'JADU',
+  'Second-story ADU'
+];
+
+const planLinks = [
+  { label: 'Permit process', id: 'process' },
+  { label: 'Cost calculator', id: 'calculator' },
+  { label: '$0 down financing', id: 'calculator' },
+  { label: 'FAQ', id: 'faq' }
+];
+
+const moreLinks = [
+  { label: 'Kitchen Remodeling', id: 'services' },
+  { label: 'Bathroom Remodeling', id: 'services' },
+  { label: 'Room Additions', id: 'services' },
+  { label: 'Reviews', id: 'reviews' }
+];
+---
+
+<footer class="px-[clamp(20px,4vw,72px)] pt-[clamp(72px,8vw,120px)] pb-8 bg-[#111111] text-white">
+  <!-- Multi-column Link Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
+    <!-- Brand Info -->
+    <div>
+      <a href="#top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+        <img src="/assets/logo-white.png" alt="Pacific West Home Builders" class="h-[60px] w-auto block" />
+      </a>
+      <p class="font-light text-[14px] leading-[1.7] text-white/70 mt-6 max-w-[280px]">
+        ADU design, permits and construction across Southern California.
+      </p>
+    </div>
+
+    <!-- ADUs Column -->
+    <div>
+      <div class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-[22px] text-white/50">
+        ADUs
+      </div>
+      <div class="space-y-3">
+        {aduTypes.map(name => (
+          <a 
+            href="#types" 
+            onclick="event.preventDefault(); window.go('types');" 
+            class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
+          >
+            {name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Plan Column -->
+    <div>
+      <div class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-[22px] text-white/50">
+        Plan
+      </div>
+      <div class="space-y-3">
+        {planLinks.map(item => (
+          <a 
+            href={`#${item.id}`} 
+            onclick={`event.preventDefault(); window.go('${item.id}');`} 
+            class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- More Column -->
+    <div>
+      <div class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-[22px] text-white/50">
+        More
+      </div>
+      <div class="space-y-3">
+        {moreLinks.map(item => (
+          <a 
+            href={`#${item.id}`} 
+            onclick={`event.preventDefault(); window.go('${item.id}');`} 
+            class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Visit / Locations -->
+    <div>
+      <div class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-[22px] text-white/50">
+        Visit
+      </div>
+      <div class="text-[14px] font-light leading-[1.7] text-white/90">
+        16000 Ventura Blvd Ste 900<br/>Encino, CA 91436
+      </div>
+      <div class="text-[14px] font-light leading-[1.7] text-white/90 mt-3.5">
+        215 N Marengo Ave Ste 2091<br/>Pasadena, CA 91101
+      </div>
+
+      <!-- Social & Map Icons -->
+      <div class="flex items-center gap-4 mt-5.5">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Instagram">
+          <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Facebook">
+          <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+        <a href="#contact" onclick="event.preventDefault(); window.go('contact');" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Location">
+          <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright & License -->
+  <div class="flex justify-between items-center flex-wrap gap-4 mt-20 pt-6 border-t border-white/[0.12] text-[12px] font-light text-white/55">
+    <span>Pacific West Home Builders © 2026 · License #1111181</span>
+    <span>(888) 398-4499 · info@pwhbuilders.com</span>
+  </div>
+</footer>

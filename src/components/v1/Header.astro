@@ -1,0 +1,93 @@
+---
+const links = [
+  ['ADU Types', 'types'],
+  ['Process', 'process'],
+  ['Cost', 'calculator'],
+  ['Financing', 'financing'],
+  ['Gallery', 'projects'],
+  ['FAQ', 'faq']
+];
+
+const moreLinks = [
+  ['Kitchen Remodeling', 'services'],
+  ['Bathroom Remodeling', 'services'],
+  ['Room Additions', 'services'],
+  ['FAQ', 'faq'],
+  ['Reviews', 'reviews'],
+  ['Contact', 'contact']
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#111111] border-b border-white/[0.08] transition-colors duration-300">
+  <div class="h-[84px] px-[clamp(20px,4vw,72px)] flex items-center gap-8 justify-between">
+    
+    <!-- Brand Logo -->
+    <a href="#top" class="flex-shrink-0 transition-opacity hover:opacity-90" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+      <img src="/assets/logo-white.png" alt="Pacific West Home Builders" class="h-[46px] w-auto block" />
+    </a>
+
+    <!-- Center Navigation (Hidden <= 1180px) -->
+    <nav class="v4-nav hidden min-[1181px]:flex items-center gap-[34px] mx-auto">
+      {links.map(([label, id]) => (
+        <a 
+          href={`#${id}`} 
+          class="nav-link text-white/85 text-[14px] font-normal transition-colors hover:text-white"
+          onclick={`event.preventDefault(); window.go('${id}');`}
+        >
+          {label}
+        </a>
+      ))}
+
+      <!-- Dropdown 'More' -->
+      <div class="relative group" id="more-dropdown-container">
+        <button 
+          type="button"
+          class="nav-link text-white/85 text-[14px] font-normal flex items-center gap-1.5 transition-colors group-hover:text-white bg-transparent border-none p-0 cursor-pointer"
+        >
+          <span>More</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="absolute top-full -left-5 pt-[22px] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto -translate-y-1.5 group-hover:translate-y-0 transition-all duration-200">
+          <div class="bg-[#111111] border border-white/10 py-2.5 min-w-[230px] shadow-2xl">
+            {moreLinks.map(([label, id]) => (
+              <a 
+                href={`#${id}`} 
+                class="block px-[22px] py-[11px] text-[#FFFFFF] text-[14px] font-light transition-colors hover:text-[#ff8a8a] hover:bg-white/[0.04]"
+                onclick={`event.preventDefault(); window.go('${id}');`}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Right Side Actions -->
+    <div class="flex items-center gap-6 ml-auto">
+      <!-- Phone Link (Hidden <= 760px) -->
+      <a 
+        href="tel:8883984499" 
+        class="v4-phone hidden sm:flex items-center gap-2.5 text-white text-[14px] font-medium whitespace-nowrap transition-colors hover:text-zinc-200"
+      >
+        <svg class="w-4 h-4 text-[#AB0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>(888) 398-4499</span>
+      </a>
+
+      <!-- Start Your ADU Button -->
+      <button 
+        type="button" 
+        onclick="window.go('calculator')"
+        class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[22px] py-[15px] border border-transparent bg-[#AB0000] text-white cursor-pointer whitespace-nowrap transition-all duration-300 hover:bg-[#8F0000] active:scale-[0.98]"
+      >
+        <span>Start your ADU</span>
+      </button>
+    </div>
+
+  </div>
+</header>
