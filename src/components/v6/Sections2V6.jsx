@@ -408,7 +408,7 @@ export function Footer() {
           <div style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.7, marginTop: 14 }}>
             215 N Marengo Ave Ste 2091<br />Pasadena, CA 91101
           </div>
-          <div style={{ display: 'flex', gap: 16, marginTop: 22 }}>
+          <div style={{ display: 'flex', gap: 16, marginTop: 28 }}>
             {['instagram', 'facebook', 'map-pin'].map(n => (
               <a key={n} href="#" aria-label={n}>
                 <Icon name={n} size={18} color={RED} />

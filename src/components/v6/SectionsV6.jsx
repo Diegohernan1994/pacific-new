@@ -71,7 +71,7 @@ const OTHER = [
   ['Bathroom Remodeling', 's19.jpg'],
   ['Bedroom Remodeling', 's15.jpg'],
   ['Room Additions', 's16.jpg'],
-  ['Garage Remodeling', 's17.jpg'],
+  ['Garage Remodeling', 'pacific-garage.jpeg'],
   ['Landscaping', 's18.jpg']
 ];
 
@@ -167,21 +167,26 @@ export function Services() {
           const on = h === k;
           return (
             <Reveal key={k} delay={k * 60} y={24}>
-              <a
-                href="#contact"
+              <div
+                role="button"
+                tabIndex={0}
                 className={"pw-service-card" + (on ? " active" : "")}
                 onClick={(e) => {
-                  // Enable tap-to-toggle on mobile touch devices
-                  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-                    if (h === k) {
-                      setH(-1);
-                    } else {
-                      e.preventDefault();
-                      setH(k);
-                    }
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setH(prev => prev === k ? -1 : k);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setH(prev => prev === k ? -1 : k);
                   }
                 }}
-                onMouseEnter={() => setH(k)}
+                onMouseEnter={() => {
+                  if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+                    setH(k);
+                  }
+                }}
                 onMouseMove={e => {
                   const r = e.currentTarget.getBoundingClientRect();
                   setM({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
@@ -190,6 +195,7 @@ export function Services() {
                   position: 'relative',
                   display: 'block',
                   overflow: 'hidden',
+                  cursor: 'pointer',
                   height: on ? 'min(62vh,560px)' : 'clamp(96px,9vw,128px)',
                   borderBottom: '1px solid ' + (on ? 'transparent' : 'var(--border-hairline)'),
                   color: on ? '#fff' : 'var(--pw-ink)',
@@ -238,7 +244,7 @@ export function Services() {
                     <Arrow size={26} color={on ? '#fff' : RED} />
                   </span>
                 </div>
-              </a>
+              </div>
             </Reveal>
           );
         })}
