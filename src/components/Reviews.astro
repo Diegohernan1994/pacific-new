@@ -1,0 +1,155 @@
+---
+const REVIEWS = [
+  {
+    quote: "Pacific West Home Builders made my ADU project so much easier than I expected. There were a few challenges along the way, but they handled everything smoothly and always found the right solutions.",
+    author: "Barbara J.",
+    service: "ADU",
+    platform: "yelp"
+  },
+  {
+    quote: "They built the foundation for my ADU, and from day one, they made the whole process feel easy and stress-free.",
+    author: "Juan I.",
+    service: "ADU Foundation",
+    platform: "google"
+  },
+  {
+    quote: "Pacific West Home Builders did an outstanding job on my new construction project. Shai was the guy on-site, and his professionalism and attention to detail were top-notch.",
+    author: "Nancy A.",
+    service: "New Construction",
+    platform: "google"
+  }
+];
+---
+
+<section id="reviews" class="relative px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#111111] text-white overflow-hidden">
+  
+  <!-- 5 Red Stars -->
+  <div class="flex items-center gap-1.5 mb-9">
+    {[...Array(5)].map(() => (
+      <svg class="w-[18px] h-[18px] text-[#AB0000] fill-[#AB0000]" viewBox="0 0 24 24">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+    ))}
+  </div>
+
+  <!-- Quotes Carousel -->
+  <div class="relative min-h-[160px] max-w-[1100px]">
+    {REVIEWS.map((rev, idx) => (
+      <div 
+        class={`review-slide ${idx === 0 ? 'block' : 'hidden'} animate-[v4Rise_0.9s_var(--ease-out)_both]`}
+        data-review-index={idx}
+      >
+        <blockquote class="m-0 font-light text-[clamp(26px,3vw,48px)] leading-[1.3] tracking-[-0.01em] text-pretty">
+          “{rev.quote}”
+        </blockquote>
+        <div class="mt-10 flex items-center gap-4 text-[13px] tracking-[0.16em] uppercase">
+          <span class="w-10 h-[1px] bg-[#AB0000]"></span>
+          <b class="font-semibold text-white">{rev.author}</b>
+          <span class="font-light text-white/60">{rev.service}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom Controls & Platform Badge -->
+  <div class="flex justify-between items-center gap-8 flex-wrap mt-16">
+    <!-- Progress Indicator Bars -->
+    <div class="flex items-center gap-2 flex-1 max-w-[420px]">
+      {REVIEWS.map((_, idx) => (
+        <span 
+          class={`review-progress-bar cursor-pointer h-[3px] flex-1 transition-colors duration-400 ${idx === 0 ? 'bg-[#AB0000]' : 'bg-white/20 hover:bg-white/40'}`}
+          data-bar-index={idx}
+        ></span>
+      ))}
+    </div>
+
+    <!-- Verified Badge -->
+    <div id="verified-badge" class="flex items-center gap-3.5 px-5 py-3.5 bg-white text-[#1C1B1A] animate-[v4Rise_0.9s_var(--ease-out)_both] shadow-xl">
+      <!-- Yelp Icon -->
+      <div id="badge-yelp" class="flex items-center">
+        <svg viewBox="0 0 24 24" class="w-[26px] h-[26px]" aria-hidden="true">
+          <path fill="#FF1A1A" d="M10.5 2.3c-.9-.4-4.6.6-5.2 1.4-.2.3-.3.6-.2.9l3.9 6.7c.6 1 2 .6 2-.6V3.1c0-.4-.2-.7-.5-.8zM9.8 14.6l-4 1.2c-.5.2-.8.7-.6 1.2.3 1.2 1.5 3.1 2.6 3.7.4.2.9.1 1.2-.3l2.2-3.5c.6-1-.3-2.2-1.4-2.3zM9.4 12.5c.6-1 0-2-1.1-2.1L4.3 9.2c-.5-.1-1 .2-1.1.7-.3 1.1-.1 3.4.5 4.4.2.4.7.6 1.2.4l4-1.5c.2-.2.4-.4.5-.7zM18.8 15.9l-3.9-1.3c-1.1-.3-2 .9-1.4 1.9l2.1 3.6c.3.4.8.6 1.2.3 1-.6 2.4-2.4 2.6-3.6.1-.4-.2-.8-.6-.9zM19.6 9.6c-.5-1.1-2.2-2.8-3.3-3.2-.4-.2-.9 0-1.2.3l-2.4 3.4c-.6.9.2 2.2 1.3 2l4.1-.9c.5-.1.8-.6.7-1.1-.1-.2-.1-.4-.2-.5z"/>
+        </svg>
+      </div>
+      <!-- Google Icon -->
+      <div id="badge-google" class="hidden items-center">
+        <svg viewBox="0 0 24 24" class="w-6 h-6" aria-hidden="true">
+          <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z"/>
+          <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1C3.3 21.3 7.3 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.3C.5 8.2 0 10.1 0 12s.5 3.8 1.3 5.4l4-3.1z"/>
+          <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l4 3.1c.9-2.8 3.6-4.9 6.7-4.9z"/>
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <div id="badge-title" class="text-[15px] font-semibold text-[#1C1B1A]">Yelp review</div>
+        <div class="text-[12px] font-light text-[#55524D]">5.0 ★ verified</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Reviews Controller -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = Array.from(document.querySelectorAll('.review-slide'));
+    const bars = Array.from(document.querySelectorAll('.review-progress-bar'));
+    const badgeYelp = document.getElementById('badge-yelp');
+    const badgeGoogle = document.getElementById('badge-google');
+    const badgeTitle = document.getElementById('badge-title');
+    const platforms = ['yelp', 'google', 'google'];
+    let currentIdx = 0;
+    let timer = null;
+
+    function showReview(idx) {
+      currentIdx = idx;
+      slides.forEach((sl, i) => {
+        if (i === idx) {
+          sl.classList.remove('hidden');
+          sl.classList.add('block');
+        } else {
+          sl.classList.remove('block');
+          sl.classList.add('hidden');
+        }
+      });
+
+      bars.forEach((b, i) => {
+        if (i === idx) {
+          b.classList.remove('bg-white/20');
+          b.classList.add('bg-[#AB0000]');
+        } else {
+          b.classList.remove('bg-[#AB0000]');
+          b.classList.add('bg-white/20');
+        }
+      });
+
+      const plat = platforms[idx] || 'yelp';
+      if (plat === 'yelp') {
+        if (badgeYelp) badgeYelp.classList.remove('hidden');
+        if (badgeGoogle) badgeGoogle.classList.add('hidden');
+        if (badgeTitle) badgeTitle.textContent = 'Yelp review';
+      } else {
+        if (badgeYelp) badgeYelp.classList.add('hidden');
+        if (badgeGoogle) badgeGoogle.classList.remove('hidden');
+        if (badgeTitle) badgeTitle.textContent = 'Google review';
+      }
+    }
+
+    function startTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => {
+        const next = (currentIdx + 1) % slides.length;
+        showReview(next);
+      }, 7000);
+    }
+
+    bars.forEach((bar, idx) => {
+      bar.addEventListener('click', () => {
+        showReview(idx);
+        startTimer();
+      });
+    });
+
+    startTimer();
+  });
+</script>

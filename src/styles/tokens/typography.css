@@ -1,0 +1,37 @@
+:root{
+--font-serif-display:'Cormorant Garamond','Times New Roman',serif;
+--font-sans:'Poppins','Helvetica Neue',Arial,sans-serif;
+
+--weight-thin:200;
+--weight-light:300;
+--weight-regular:400;
+--weight-medium:500;
+--weight-semibold:600;
+--weight-bold:700;
+--weight-heavy:800;
+
+/* Scale (px, desktop) */
+--fs-12:12px;--fs-14:14px;--fs-16:16px;--fs-18:18px;--fs-20:20px;--fs-24:24px;
+--fs-32:32px;--fs-40:40px;--fs-56:56px;--fs-72:72px;--fs-96:96px;
+
+--lh-tight:1.05; /* @kind font */
+--lh-snug:1.2; /* @kind font */
+--lh-body:1.65; /* @kind font */
+
+--tracking-tight:-0.01em;
+--tracking-normal:0;
+--tracking-caps:0.14em;      /* small caps labels / buttons */
+--tracking-wide:0.24em;      /* location lines "RANCHO CUCAMONGA, CA" */
+--tracking-ultra:0.42em;     /* "HOME BUILDERS" sub-wordmark */
+
+/* Semantic roles */
+--type-display-family:var(--font-serif-display);
+--type-display-weight:var(--weight-regular);
+--type-heading-family:var(--font-serif-display);
+--type-body-family:var(--font-sans);
+--type-body-weight:var(--weight-light);
+--type-label-family:var(--font-sans);
+--type-label-weight:var(--weight-regular);
+--type-offer-family:var(--font-sans);
+--type-offer-weight:var(--weight-heavy);
+}
