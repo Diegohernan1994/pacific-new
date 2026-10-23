@@ -108,34 +108,34 @@ const N = STAGES.length;
       <div 
         id="surveyor-laser-line" 
         class="absolute left-0 right-0 top-0 h-[1.5px] will-change-transform"
-        style="background: linear-gradient(90deg, rgba(255,43,43,0.05) 0%, rgba(255,43,43,0.7) 15%, #ff4d4d 50%, rgba(255,43,43,0.7) 85%, rgba(255,43,43,0.05) 100%); box-shadow: 0 0 10px rgba(255,43,43,0.6);"
+        style="background: linear-gradient(90deg, rgba(255,43,43,0.05) 0%, rgba(255,43,43,0.7) 15%, #ff4d4d 50%, rgba(255,43,43,0.7) 85%, rgba(255,43,43,0.05) 100%);"
       ></div>
 
       <!-- Surveyor Transit Scope & Plumb Marker -->
       <div 
         id="surveyor-scope" 
-        class="absolute left-0 top-0 w-10 h-10 -ml-5 -mt-5 rounded-full border border-white/70 bg-black/60 backdrop-blur-[4px] grid place-items-center will-change-transform shadow-[0_0_18px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-200"
+        class="absolute left-0 top-0 w-10 h-10 -ml-5 -mt-5 rounded-full border border-white/80 bg-transparent grid place-items-center will-change-transform transition-[border-color,transform] duration-200"
       >
         <!-- Horizontal level reticle cross marks -->
-        <span class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1px] bg-white/50 pointer-events-none"></span>
+        <span class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1px] bg-white/60 pointer-events-none"></span>
         <span class="absolute top-1 bottom-1 left-1/2 -translate-x-1/2 w-[1px] bg-[#ff3b3b]/60 pointer-events-none"></span>
         
         <!-- Central Laser Diode -->
-        <span id="surveyor-diode" class="w-2 h-2 rounded-full bg-[#ff2b2b] shadow-[0_0_8px_#ff2b2b,0_0_2px_#ffffff] z-10 transition-colors duration-200"></span>
+        <span id="surveyor-diode" class="w-2 h-2 rounded-full bg-[#ff2b2b] z-10 transition-colors duration-200"></span>
         
         <!-- Short Vertical Plumb Drop Line (38px) -->
         <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[1.5px] h-9 bg-gradient-to-b from-[#ff3b3b] to-transparent flex flex-col items-center justify-end">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] shadow-[0_0_6px_#ff2b2b] -mb-0.5"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] -mb-0.5"></span>
         </div>
       </div>
 
-      <!-- Architectural Elevation & Distance HUD Badge -->
+      <!-- Architectural Elevation & Distance HUD (Sin negro, sin sombreado) -->
       <div 
         id="surveyor-hud" 
-        class="absolute left-0 top-0 flex items-center gap-2.5 px-3 py-1.5 bg-[#0e0e0e]/95 border border-white/25 text-white font-mono text-[11px] tracking-wider whitespace-nowrap will-change-transform shadow-[0_8px_25px_rgba(0,0,0,0.9)] rounded-sm transition-[border-color,background-color] duration-200"
+        class="absolute left-0 top-0 flex items-center gap-2 text-white font-mono text-[11px] font-semibold tracking-wider whitespace-nowrap will-change-transform bg-transparent select-none transition-colors duration-200"
       >
-        <span id="surveyor-hud-dot" class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] shadow-[0_0_6px_#ff2b2b] transition-colors duration-200"></span>
-        <span id="surveyor-hud-text" class="font-medium text-white/95">▲ ELEV: +0′ 0″ · DIST: 22′ 4″ · DRAFTING</span>
+        <span id="surveyor-hud-dot" class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] transition-colors duration-200"></span>
+        <span id="surveyor-hud-text" class="font-medium text-white">▲ ELEV: +0′ 0″ · DIST: 22′ 4″ · DRAFTING</span>
       </div>
 
     </div>
@@ -295,11 +295,11 @@ const N = STAGES.length;
       // Surveyor transit scope tracks exact (x, y)
       if (surveyorScope) surveyorScope.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
-      // HUD badge tracks with smart edge flip & floats neatly above laser line
+      // HUD text tracks with smart edge flip & floats neatly above laser line (sin fondo negro, sin sombreado)
       const flip = x > r.width - 290;
       if (surveyorHud) {
-        const hudY = y > 70 ? y - 38 : y + 22;
-        surveyorHud.style.transform = `translate3d(${flip ? x - 275 : x + 28}px, ${hudY}px, 0)`;
+        const hudY = y > 40 ? y - 24 : y + 16;
+        surveyorHud.style.transform = `translate3d(${flip ? x - 275 : x + 24}px, ${hudY}px, 0)`;
       }
 
       // Calculate horizontal span (footprint distance across 40ft site)
@@ -329,14 +329,14 @@ const N = STAGES.length;
       });
 
       stage.addEventListener('mouseleave', () => {
-        if (surveyorBox) surveyorBox.style.opacity = '0.8';
+        if (surveyorBox) surveyorBox.style.opacity = '0.85';
       });
 
       stage.addEventListener('mouseenter', () => {
         if (surveyorBox) surveyorBox.style.opacity = '1';
       });
 
-      // Interactive hover states on buttons and stage elements
+      // Interactive hover states on buttons and stage elements (clean, no shadows)
       const interactiveElements = stage.querySelectorAll('button, a, .stage-dot-btn, input');
       interactiveElements.forEach((el) => {
         el.addEventListener('mouseenter', () => {
@@ -344,19 +344,16 @@ const N = STAGES.length;
           interactiveTargetName = (el.textContent || '').trim().replace(/\s+/g, ' ').toUpperCase() || 'SELECT';
           if (surveyorScope) {
             surveyorScope.style.borderColor = '#ffffff';
-            surveyorScope.style.boxShadow = '0 0 25px rgba(255, 43, 43, 0.8), 0 0 0 1px #ffffff';
-          }
-          if (surveyorHud) {
-            surveyorHud.style.borderColor = '#ff3b3b';
-            surveyorHud.style.backgroundColor = 'rgba(28, 6, 6, 0.96)';
+            surveyorScope.style.transform = `translate3d(${lastX}px, ${lastY}px, 0) scale(1.15)`;
           }
           if (surveyorDiode) {
             surveyorDiode.style.backgroundColor = '#ffffff';
-            surveyorDiode.style.boxShadow = '0 0 10px #ffffff';
           }
           if (surveyorHudDot) {
             surveyorHudDot.style.backgroundColor = '#ffffff';
-            surveyorHudDot.style.boxShadow = '0 0 8px #ffffff';
+          }
+          if (surveyorHudText) {
+            surveyorHudText.style.color = '#ff4d4d';
           }
           const r = stage.getBoundingClientRect();
           setSurveyorPosition(lastX, lastY, r);
@@ -366,20 +363,17 @@ const N = STAGES.length;
           isHoveringInteractive = false;
           interactiveTargetName = '';
           if (surveyorScope) {
-            surveyorScope.style.borderColor = 'rgba(255, 255, 255, 0.7)';
-            surveyorScope.style.boxShadow = '0 0 18px rgba(0, 0, 0, 0.85)';
-          }
-          if (surveyorHud) {
-            surveyorHud.style.borderColor = 'rgba(255, 255, 255, 0.25)';
-            surveyorHud.style.backgroundColor = 'rgba(14, 14, 14, 0.95)';
+            surveyorScope.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+            surveyorScope.style.transform = `translate3d(${lastX}px, ${lastY}px, 0) scale(1)`;
           }
           if (surveyorDiode) {
             surveyorDiode.style.backgroundColor = '#ff2b2b';
-            surveyorDiode.style.boxShadow = '0 0 8px #ff2b2b, 0 0 2px #ffffff';
           }
           if (surveyorHudDot) {
             surveyorHudDot.style.backgroundColor = '#ff2b2b';
-            surveyorHudDot.style.boxShadow = '0 0 6px #ff2b2b';
+          }
+          if (surveyorHudText) {
+            surveyorHudText.style.color = '#ffffff';
           }
           const r = stage.getBoundingClientRect();
           setSurveyorPosition(lastX, lastY, r);
