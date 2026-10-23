@@ -102,9 +102,9 @@ const N = STAGES.length;
     ></div>
 
     <!-- Architectural Circle Follower Layer (z-index: 3) -->
-    <div id="crosshair-box" aria-hidden="true" class="absolute inset-0 pointer-events-none transition-opacity duration-300 z-[3]" style="opacity: 1;">
-      <div id="crosshair-circle" class="absolute left-0 top-0 w-10 h-10 rounded-full border border-[#AB0000] grid place-items-center will-change-transform">
-        <span class="w-1 h-1 rounded-full bg-[#AB0000]"></span>
+    <div id="crosshair-box" aria-hidden="true" class="absolute inset-0 pointer-events-none transition-opacity duration-300 z-[3]" style="opacity: 1; pointer-events: none !important;">
+      <div id="crosshair-circle" class="absolute left-0 top-0 w-10 h-10 rounded-full border border-[#AB0000] grid place-items-center will-change-transform pointer-events-none" style="pointer-events: none !important;">
+        <span class="w-1 h-1 rounded-full bg-[#AB0000] pointer-events-none" style="pointer-events: none !important;"></span>
       </div>
     </div>
 
@@ -187,13 +187,13 @@ const N = STAGES.length;
       ))}
     </div>
 
-    <!-- Initial Scroll Prompt at Stage 0 (z-index: 5) -->
-    <button 
-      type="button" 
+    <!-- Initial Scroll Prompt at Stage 0 (z-index: 50) -->
+    <a 
+      href="#types" 
       id="scroll-prompt" 
       onclick="event.preventDefault(); if (typeof window.go === 'function') { window.go('types'); } else { document.getElementById('types')?.scrollIntoView({ behavior: 'smooth' }); }"
-      class="absolute z-[5] left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-2 pointer-events-auto" 
-      style="animation: v4Rise 1s var(--ease-out) 0.6s both;"
+      class="absolute z-50 left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-3 pointer-events-auto" 
+      style="animation: v4Rise 1s var(--ease-out) 0.6s both; pointer-events: auto !important;"
       aria-label="Scroll to ADU types section"
     >
       <span>SCROLL TO BUILD</span>
@@ -201,7 +201,7 @@ const N = STAGES.length;
         <line x1="12" y1="5" x2="12" y2="19"></line>
         <polyline points="19 12 12 19 5 12"></polyline>
       </svg>
-    </button>
+    </a>
 
     <!-- Bottom Scrubber Progress Bar (z-index: 4) -->
     <div class="absolute z-[4] left-0 right-0 bottom-0 h-1 bg-white/10">
@@ -271,6 +271,17 @@ const N = STAGES.length;
 
         stage.addEventListener('mouseenter', () => {
           if (crosshairBox) crosshairBox.style.opacity = '1';
+        });
+
+        // Hide crosshair when hovering interactive buttons or links so they are never blocked
+        const interactiveElements = stage.querySelectorAll('button, a, .stage-dot-btn, #scroll-prompt');
+        interactiveElements.forEach((el) => {
+          el.addEventListener('mouseenter', () => {
+            if (crosshairBox) crosshairBox.style.opacity = '0';
+          });
+          el.addEventListener('mouseleave', () => {
+            if (crosshairBox) crosshairBox.style.opacity = '1';
+          });
         });
       }
     }
@@ -395,3 +406,14 @@ const N = STAGES.length;
     initBuildHero();
   }
 </script>
+
+<style>
+  #crosshair-box,
+  #crosshair-box * {
+    pointer-events: none !important;
+  }
+  #scroll-prompt {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+</style>

@@ -102,40 +102,42 @@ const N = STAGES.length;
     ></div>
 
     <!-- Jobsite Laser Level & Elevation Follower (z-index: 3) -->
-    <div id="surveyor-box" aria-hidden="true" class="absolute inset-0 pointer-events-none transition-opacity duration-300 z-[3]" style="opacity: 1;">
+    <div id="surveyor-box" aria-hidden="true" class="absolute inset-0 pointer-events-none transition-opacity duration-300 z-[3]" style="opacity: 1; pointer-events: none !important;">
       
       <!-- Horizontal Laser Level Beam -->
       <div 
         id="surveyor-laser-line" 
-        class="absolute left-0 right-0 top-0 h-[1.5px] will-change-transform"
-        style="background: linear-gradient(90deg, rgba(255,43,43,0.05) 0%, rgba(255,43,43,0.7) 15%, #ff4d4d 50%, rgba(255,43,43,0.7) 85%, rgba(255,43,43,0.05) 100%); box-shadow: 0 0 10px rgba(255,43,43,0.6);"
+        class="absolute left-0 right-0 top-0 h-[1.5px] will-change-transform pointer-events-none"
+        style="background: linear-gradient(90deg, rgba(255,43,43,0.05) 0%, rgba(255,43,43,0.7) 15%, #ff4d4d 50%, rgba(255,43,43,0.7) 85%, rgba(255,43,43,0.05) 100%); box-shadow: 0 0 10px rgba(255,43,43,0.6); pointer-events: none !important;"
       ></div>
 
       <!-- Surveyor Transit Scope & Plumb Marker -->
       <div 
         id="surveyor-scope" 
-        class="absolute left-0 top-0 w-10 h-10 -ml-5 -mt-5 rounded-full border border-white/70 bg-black/60 backdrop-blur-[4px] grid place-items-center will-change-transform shadow-[0_0_18px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-200"
+        class="absolute left-0 top-0 w-10 h-10 -ml-5 -mt-5 rounded-full border border-white/70 bg-black/60 backdrop-blur-[4px] grid place-items-center will-change-transform shadow-[0_0_18px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-200 pointer-events-none"
+        style="pointer-events: none !important;"
       >
         <!-- Horizontal level reticle cross marks -->
-        <span class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1px] bg-white/50 pointer-events-none"></span>
-        <span class="absolute top-1 bottom-1 left-1/2 -translate-x-1/2 w-[1px] bg-[#ff3b3b]/60 pointer-events-none"></span>
+        <span class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1px] bg-white/50 pointer-events-none" style="pointer-events: none !important;"></span>
+        <span class="absolute top-1 bottom-1 left-1/2 -translate-x-1/2 w-[1px] bg-[#ff3b3b]/60 pointer-events-none" style="pointer-events: none !important;"></span>
         
         <!-- Central Laser Diode -->
-        <span id="surveyor-diode" class="w-2 h-2 rounded-full bg-[#ff2b2b] shadow-[0_0_8px_#ff2b2b,0_0_2px_#ffffff] z-10 transition-colors duration-200"></span>
+        <span id="surveyor-diode" class="w-2 h-2 rounded-full bg-[#ff2b2b] shadow-[0_0_8px_#ff2b2b,0_0_2px_#ffffff] z-10 transition-colors duration-200 pointer-events-none" style="pointer-events: none !important;"></span>
         
         <!-- Short Vertical Plumb Drop Line (38px) -->
-        <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[1.5px] h-9 bg-gradient-to-b from-[#ff3b3b] to-transparent flex flex-col items-center justify-end">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] shadow-[0_0_6px_#ff2b2b] -mb-0.5"></span>
+        <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[1.5px] h-9 bg-gradient-to-b from-[#ff3b3b] to-transparent flex flex-col items-center justify-end pointer-events-none" style="pointer-events: none !important;">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] shadow-[0_0_6px_#ff2b2b] -mb-0.5 pointer-events-none" style="pointer-events: none !important;"></span>
         </div>
       </div>
 
       <!-- Architectural Elevation & Distance HUD Badge -->
       <div 
         id="surveyor-hud" 
-        class="absolute left-0 top-0 flex items-center gap-2.5 px-3 py-1.5 bg-[#0e0e0e]/95 border border-white/25 text-white font-mono text-[11px] tracking-wider whitespace-nowrap will-change-transform shadow-[0_8px_25px_rgba(0,0,0,0.9)] rounded-sm transition-[border-color,background-color] duration-200"
+        class="absolute left-0 top-0 flex items-center gap-2.5 px-3 py-1.5 bg-[#0e0e0e]/95 border border-white/25 text-white font-mono text-[11px] tracking-wider whitespace-nowrap will-change-transform shadow-[0_8px_25px_rgba(0,0,0,0.9)] rounded-sm transition-[border-color,background-color] duration-200 pointer-events-none"
+        style="pointer-events: none !important;"
       >
-        <span id="surveyor-hud-dot" class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] shadow-[0_0_6px_#ff2b2b] transition-colors duration-200"></span>
-        <span id="surveyor-hud-text" class="font-medium text-white/95">▲ ELEV: +0′ 0″ · DIST: 22′ 4″ · DRAFTING</span>
+        <span id="surveyor-hud-dot" class="w-1.5 h-1.5 rounded-full bg-[#ff2b2b] shadow-[0_0_6px_#ff2b2b] transition-colors duration-200 pointer-events-none" style="pointer-events: none !important;"></span>
+        <span id="surveyor-hud-text" class="font-medium text-white/95 pointer-events-none" style="pointer-events: none !important;">▲ ELEV: +0′ 0″ · DIST: 22′ 4″ · DRAFTING</span>
       </div>
 
     </div>
@@ -219,13 +221,13 @@ const N = STAGES.length;
       ))}
     </div>
 
-    <!-- Initial Scroll Prompt at Stage 0 (z-index: 5) -->
-    <button 
-      type="button" 
+    <!-- Initial Scroll Prompt at Stage 0 (z-index: 50) -->
+    <a 
+      href="#types" 
       id="scroll-prompt" 
       onclick="event.preventDefault(); if (typeof window.go === 'function') { window.go('types'); } else { document.getElementById('types')?.scrollIntoView({ behavior: 'smooth' }); }"
-      class="absolute z-[5] left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-2 pointer-events-auto" 
-      style="animation: v4Rise 1s var(--ease-out) 0.6s both;"
+      class="absolute z-50 left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-3 pointer-events-auto" 
+      style="animation: v4Rise 1s var(--ease-out) 0.6s both; pointer-events: auto !important;"
       aria-label="Scroll to ADU types section"
     >
       <span>SCROLL TO BUILD</span>
@@ -233,7 +235,7 @@ const N = STAGES.length;
         <line x1="12" y1="5" x2="12" y2="19"></line>
         <polyline points="19 12 12 19 5 12"></polyline>
       </svg>
-    </button>
+    </a>
 
     <!-- Bottom Scrubber Progress Bar (z-index: 4) -->
     <div class="absolute z-[4] left-0 right-0 bottom-0 h-1 bg-white/10">
@@ -522,5 +524,16 @@ const N = STAGES.length;
     initBuildHeroV1();
   }
 </script>
+
+<style>
+  #surveyor-box,
+  #surveyor-box * {
+    pointer-events: none !important;
+  }
+  #scroll-prompt {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+</style>
 
 
