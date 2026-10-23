@@ -223,9 +223,10 @@ const N = STAGES.length;
     <button 
       type="button" 
       id="scroll-prompt" 
+      onclick="event.preventDefault(); if (typeof window.go === 'function') { window.go('types'); } else { document.getElementById('types')?.scrollIntoView({ behavior: 'smooth' }); }"
       class="absolute z-[5] left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-2 pointer-events-auto" 
       style="animation: v4Rise 1s var(--ease-out) 0.6s both;"
-      aria-label="Scroll to build stages"
+      aria-label="Scroll to ADU types section"
     >
       <span>SCROLL TO BUILD</span>
       <svg class="w-3.5 h-3.5 text-white animate-bounce pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -483,15 +484,16 @@ const N = STAGES.length;
     window.addEventListener('resize', onScroll);
     updateHero();
 
-    // Click on scroll prompt to jump smoothly to Stage 1 (01 DESIGN & PRE-CONSTRUCTION)
+    // Click on scroll prompt to jump smoothly to #types section
     if (scrollPrompt) {
-      scrollPrompt.addEventListener('click', () => {
-        const total = wrap.offsetHeight - window.innerHeight;
-        const targetTop = wrap.offsetTop + (total * 1.5) / N;
-        window.scrollTo({
-          top: targetTop,
-          behavior: 'smooth'
-        });
+      scrollPrompt.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof window.go === 'function') {
+          window.go('types');
+        } else {
+          const typesEl = document.getElementById('types');
+          if (typesEl) typesEl.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     }
 
