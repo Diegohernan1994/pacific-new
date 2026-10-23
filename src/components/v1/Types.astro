@@ -234,8 +234,16 @@ const TYPES = [
     setActiveType(0);
 
     items.forEach((item, idx) => {
-      item.addEventListener('mouseenter', () => setActiveType(idx));
-      item.addEventListener('click', () => setActiveType(idx));
+      item.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover)').matches) {
+          setActiveType(idx);
+        }
+      });
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setActiveType(idx);
+      });
     });
   });
 </script>
