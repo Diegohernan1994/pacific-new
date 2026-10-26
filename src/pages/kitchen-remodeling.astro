@@ -1,30 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import OtherServices from '../components/OtherServices.astro';
 import Footer from '../components/Footer.astro';
-import AskUs from '../components/AskUs.astro';
 
 const BENEFITS = [
   {
     n: 'A Kitchen Tailored to Your Life',
-    d: 'Your kitchen should complement your daily routine and family’s needs. Whether it’s optimizing the layout for better flow or choosing materials that reflect your unique style, we create kitchens that fit your life seamlessly.',
-    src: '/assets/imagery/kitchen/key-benefits.jpg'
+    d: 'Your kitchen should complement your daily routine and family’s needs. Whether it’s optimizing the layout for better flow or choosing materials that reflect your unique style, we create kitchens that fit your life seamlessly.'
   },
   {
     n: 'Enhanced Functionality and Efficiency',
-    d: 'Say goodbye to cramped, outdated spaces. A remodel lets you reconfigure your kitchen for better organization, more storage, and upgraded appliances, ensuring every inch works for you.',
-    src: '/assets/imagery/kitchen/dream-kitchen.jpg'
+    d: 'Say goodbye to cramped, outdated spaces. A remodel lets you reconfigure your kitchen for better organization, more storage, and upgraded appliances, ensuring every inch works for you.'
   },
   {
     n: 'Boost Your Home’s Value',
-    d: 'A beautifully remodeled kitchen is one of the best investments you can make. Not only does it enhance your everyday life, but it also significantly increases your home’s market appeal and resale value.',
-    src: '/assets/imagery/kitchen/what-we-bring-bg.webp'
+    d: 'A beautifully remodeled kitchen is one of the best investments you can make. Not only does it enhance your everyday life, but it also significantly increases your home’s market appeal and resale value.'
   },
   {
     n: 'A Space That Reflects You',
-    d: 'From sleek, modern designs to warm, traditional aesthetics, your remodeled kitchen will be a true reflection of your taste and personality, customized down to the finest detail.',
-    src: '/assets/imagery/kitchen/banner.webp'
+    d: 'From sleek, modern designs to warm, traditional aesthetics, your remodeled kitchen will be a true reflection of your taste and personality, customized down to the finest detail.'
   }
 ];
 
@@ -78,22 +72,19 @@ const WHY_CHOOSE = [
   }
 ];
 
-const FEATURED_GAL = [
-  { src: '/assets/imagery/kitchen/gallery/gal-01.jpg', cap: 'Kitchen Remodeling · 01', c: 1, r: 1, cs: 2, rs: 2 },
-  { src: '/assets/imagery/kitchen/gallery/gal-02.jpg', cap: 'Kitchen Remodeling · 02', c: 3, r: 1, cs: 1, rs: 2 },
-  { src: '/assets/imagery/kitchen/gallery/gal-03.jpg', cap: 'Kitchen Remodeling · 03', c: 4, r: 1, cs: 1, rs: 1 },
-  { src: '/assets/imagery/kitchen/gallery/gal-04.jpg', cap: 'Kitchen Remodeling · 04', c: 4, r: 2, cs: 1, rs: 1 },
-  { src: '/assets/imagery/kitchen/gallery/gal-05.jpg', cap: 'Kitchen Remodeling · 05', c: 1, r: 3, cs: 1, rs: 1 },
-  { src: '/assets/imagery/kitchen/gallery/gal-06.jpg', cap: 'Kitchen Remodeling · 06', c: 1, r: 4, cs: 1, rs: 1 },
-  { src: '/assets/imagery/kitchen/gallery/gal-07.jpg', cap: 'Kitchen Remodeling · 07', c: 2, r: 3, cs: 2, rs: 2 },
-  { src: '/assets/imagery/kitchen/gallery/gal-08.jpg', cap: 'Kitchen Remodeling · 08', c: 4, r: 3, cs: 1, rs: 2 },
-  { src: '/assets/imagery/kitchen/gallery/gal-09.jpg', cap: 'Kitchen Remodeling · 09', c: 1, r: 5, cs: 2, rs: 2 },
-  { src: '/assets/imagery/kitchen/gallery/gal-10.jpg', cap: 'Kitchen Remodeling · 10', c: 3, r: 5, cs: 1, rs: 1 },
-  { src: '/assets/imagery/kitchen/gallery/gal-11.jpg', cap: 'Kitchen Remodeling · 11', c: 3, r: 6, cs: 1, rs: 1 },
-  { src: '/assets/imagery/kitchen/gallery/gal-12.jpg', cap: 'Kitchen Remodeling · 12', c: 4, r: 5, cs: 1, rs: 2 }
-];
-
-const EXTRA_GAL = [
+const ALL_GAL_SRCS = [
+  '/assets/imagery/kitchen/gallery/gal-01.jpg',
+  '/assets/imagery/kitchen/gallery/gal-02.jpg',
+  '/assets/imagery/kitchen/gallery/gal-03.jpg',
+  '/assets/imagery/kitchen/gallery/gal-04.jpg',
+  '/assets/imagery/kitchen/gallery/gal-05.jpg',
+  '/assets/imagery/kitchen/gallery/gal-06.jpg',
+  '/assets/imagery/kitchen/gallery/gal-07.jpg',
+  '/assets/imagery/kitchen/gallery/gal-08.jpg',
+  '/assets/imagery/kitchen/gallery/gal-09.jpg',
+  '/assets/imagery/kitchen/gallery/gal-10.jpg',
+  '/assets/imagery/kitchen/gallery/gal-11.jpg',
+  '/assets/imagery/kitchen/gallery/gal-12.jpg',
   '/assets/imagery/kitchen/gallery/gal-13.jpg',
   '/assets/imagery/kitchen/gallery/gal-14.png',
   '/assets/imagery/kitchen/gallery/gal-15.png',
@@ -127,32 +118,27 @@ const EXTRA_GAL = [
   '/assets/imagery/kitchen/gallery/gal-43.png',
   '/assets/imagery/kitchen/gallery/gal-44.png'
 ];
-
-const ALL_GAL_SRCS = [
-  ...FEATURED_GAL.map(g => g.src),
-  ...EXTRA_GAL
-];
 ---
 
 <Layout 
-  title="Kitchen Remodeling · Pacific West Home Builders"
-  description="Transform Your Kitchen with Pacific West Home Builders. Custom kitchen remodeling, 3D design, cabinetry, countertops, and full installation across Southern California."
+  title="Kitchen Remodeling - Pacific West Home Builders"
+  description="Transform Your Kitchen with Pacific West Home Builders. Your Dream Kitchen, Designed Just for You."
 >
   <Header />
 
   <main class="w-full">
     
     <!-- =====================================================================
-         SECTION 1: HERO (100% Verbatim Copy & Original Banner)
+         SECTION 1: HERO (banner.webp)
          ===================================================================== -->
-    <section id="top" class="relative h-screen min-h-[680px] w-full overflow-hidden bg-[#111111] text-white select-none">
+    <section id="top" class="relative h-screen min-h-[640px] w-full overflow-hidden bg-[#111111] text-white select-none">
       <!-- Background Image Layer (z-index: 1) -->
       <div class="absolute inset-0 pt-[84px] z-[1]">
         <div class="w-full h-full overflow-hidden">
           <img 
             src="/assets/imagery/kitchen/banner.webp" 
             alt="Transform Your Kitchen with Pacific West Home Builders" 
-            class="w-full h-full object-cover object-center block scale-[1.02] transition-transform duration-[2600ms] ease-out"
+            class="w-full h-full object-cover object-center block"
             loading="eager"
           />
         </div>
@@ -173,7 +159,6 @@ const ALL_GAL_SRCS = [
 
       <!-- Hero Content (z-index: 4) -->
       <div class="absolute z-[4] left-[clamp(20px,4vw,72px)] right-[clamp(20px,4vw,72px)] bottom-[clamp(64px,11vh,128px)] max-w-[1040px] pointer-events-none">
-        <!-- Eyebrow / Subtitles from Original Page -->
         <div class="flex items-center gap-4 flex-wrap text-[12px] font-semibold tracking-[0.24em] uppercase text-[#ff6b6b]" style="animation: v4Rise 0.8s var(--ease-out) both;">
           <span class="w-14 h-[1px] bg-[#ff6b6b]"></span>
           <span>Kitchen Remodeling</span>
@@ -181,42 +166,20 @@ const ALL_GAL_SRCS = [
           <span class="text-white/85">Pacific West Home Builders</span>
         </div>
 
-        <!-- Verbatim H1 -->
         <h1 class="mt-6 font-sans font-semibold text-[clamp(36px,5.2vw,92px)] leading-[0.95] tracking-[-0.02em] uppercase text-balance text-white" style="animation: v4Rise 0.9s var(--ease-out) 80ms both;">
           Transform Your Kitchen with Pacific West Home Builders
         </h1>
 
-        <!-- Verbatim CTA Button -->
         <div class="flex gap-3 flex-wrap mt-[34px] pointer-events-auto" style="animation: v4Rise 0.9s var(--ease-out) 180ms both;">
-          <button 
-            type="button" 
-            onclick="window.go('contact')"
+          <a 
+            href="#contact" 
+            onclick="event.preventDefault(); window.go('contact');"
             class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[28px] py-[18px] bg-[#AB0000] text-white cursor-pointer transition-colors duration-300 hover:bg-[#8F0000]"
           >
             <span>CONTACT US NOW</span>
-            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </button>
+          </a>
         </div>
       </div>
-
-      <!-- Scroll Prompt (z-index: 50) -->
-      <a 
-        href="#dream-kitchen" 
-        id="scroll-prompt" 
-        onclick="event.preventDefault(); window.go('dream-kitchen');"
-        class="absolute z-50 left-0 right-0 bottom-7 mx-auto w-fit flex items-center gap-3 text-[11px] tracking-[0.3em] text-white/80 hover:text-white cursor-pointer transition-colors duration-200 outline-none select-none bg-transparent border-none p-3 pointer-events-auto" 
-        style="animation: v4Rise 1s var(--ease-out) 0.6s both; pointer-events: auto !important;"
-        aria-label="Scroll to next section"
-      >
-        <span>SCROLL TO EXPLORE</span>
-        <svg class="w-3.5 h-3.5 text-white animate-bounce pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <polyline points="19 12 12 19 5 12"></polyline>
-        </svg>
-      </a>
 
       <!-- Bottom Accent Line -->
       <div class="absolute z-[4] left-0 right-0 bottom-0 h-1 bg-white/10">
@@ -225,19 +188,16 @@ const ALL_GAL_SRCS = [
     </section>
 
     <!-- =====================================================================
-         SECTION 2: YOUR DREAM KITCHEN, DESIGNED JUST FOR YOU
+         SECTION 2: YOUR DREAM KITCHEN, DESIGNED JUST FOR YOU (dream-kitchen.jpg)
          ===================================================================== -->
     <section id="dream-kitchen" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#F7F5F2] text-[#1C1B1A]">
       <div class="grid grid-cols-1 min-[901px]:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-[clamp(36px,6vw,96px)] items-center">
         
-        <!-- Left Column: Verbatim Copy -->
+        <!-- Left Column -->
         <div class="reveal-item">
-          <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
-            <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-            <span>Kitchen Remodeling</span>
-          </div>
+          <span class="block w-14 h-[1px] bg-[#AB0000] mb-7"></span>
 
-          <h2 class="mt-7 font-sans font-semibold text-[clamp(34px,4.4vw,68px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] text-balance">
+          <h2 class="font-sans font-semibold text-[clamp(34px,4.4vw,68px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] text-balance">
             Your Dream Kitchen, Designed Just for You
           </h2>
 
@@ -249,19 +209,9 @@ const ALL_GAL_SRCS = [
               Whether you’re envisioning a modern space with sleek finishes or a cozy, timeless kitchen, we are here to bring your dream to life. With a focus on personalized solutions, unmatched professionalism, and thoughtful planning, we transform kitchens into spaces you’ll love for years to come.
             </p>
           </div>
-
-          <div class="mt-10">
-            <button 
-              type="button" 
-              onclick="window.go('contact')"
-              class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[26px] py-[17px] bg-[#111111] text-white cursor-pointer transition-colors duration-300 hover:bg-[#AB0000]"
-            >
-              <span>CONTACT US NOW</span>
-            </button>
-          </div>
         </div>
 
-        <!-- Right Column: Original Section Image (dream-kitchen.jpg) -->
+        <!-- Right Column: dream-kitchen.jpg -->
         <div class="reveal-item relative aspect-[4/3] sm:aspect-[5/4] w-full overflow-hidden bg-[#E2DED7] shadow-xl group">
           <img 
             src="/assets/imagery/kitchen/dream-kitchen.jpg" 
@@ -269,9 +219,6 @@ const ALL_GAL_SRCS = [
             class="w-full h-full object-cover object-center block transition-transform duration-[1400ms] ease-out group-hover:scale-105"
             loading="lazy"
           />
-          <div class="absolute left-0 top-0 z-[2] bg-[#111111] text-white px-[18px] py-3 text-[11px] font-semibold tracking-[0.2em] uppercase pointer-events-none shadow-md">
-            Pacific West · Custom Kitchens
-          </div>
         </div>
 
       </div>
@@ -281,7 +228,6 @@ const ALL_GAL_SRCS = [
          SECTION 3: WHAT WE BRING TO YOUR KITCHEN REMODEL (what-we-bring-bg.webp)
          ===================================================================== -->
     <section id="what-we-bring" class="relative px-[clamp(20px,4vw,72px)] py-[clamp(96px,11vw,176px)] bg-[#111111] text-white overflow-hidden">
-      <!-- Original Section Background Image -->
       <div class="absolute inset-0 z-0">
         <img 
           src="/assets/imagery/kitchen/what-we-bring-bg.webp" 
@@ -293,53 +239,27 @@ const ALL_GAL_SRCS = [
       </div>
 
       <div class="relative z-10 max-w-[960px] reveal-item">
-        <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#ff6b6b]">
-          <span class="w-14 h-[1px] bg-[#ff6b6b]"></span>
-          <span>Pacific West Home Builders</span>
-        </div>
+        <span class="block w-14 h-[1px] bg-[#ff6b6b] mb-7"></span>
 
-        <h2 class="mt-7 font-sans font-semibold text-[clamp(34px,4.6vw,72px)] leading-[0.98] tracking-[-0.015em] uppercase text-white text-balance">
+        <h2 class="font-sans font-semibold text-[clamp(34px,4.6vw,72px)] leading-[0.98] tracking-[-0.015em] uppercase text-white text-balance">
           What We Bring to Your Kitchen Remodel
         </h2>
 
-        <p class="mt-8 text-[clamp(16px,1.35vw,21px)] font-light leading-[1.75] text-white/90 max-w-[860px]">
+        <p class="mt-8 text-[clamp(16px,1.35vw,21px)] font-light leading-[1.75] text-white/90 max-w-[860px] m-0">
           We design kitchens that maximize space and functionality, creating a seamless flow for cooking, entertaining, and dining. Custom storage solutions, such as soft-close drawers, pull-out shelves, and built-in organizers, keep everything organized and clutter-free. High-quality finishes, including quartz or granite countertops and tile, glass, or stone backsplashes, add durability and style. Stylish and durable flooring options, such as hardwood, tile, or luxury vinyl, combined with layered lighting solutions like task lighting and decorative pendants, create the perfect ambiance.
         </p>
-
-        <!-- Architectural Highlight Strip -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-10 border-t border-white/15">
-          <div>
-            <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#ff6b6b]">01 · Storage</div>
-            <div class="mt-2 text-[15px] font-medium text-white">Soft-Close & Pull-Out Organizers</div>
-          </div>
-          <div>
-            <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#ff6b6b]">02 · Surfaces</div>
-            <div class="mt-2 text-[15px] font-medium text-white">Quartz, Granite & Stone Backsplashes</div>
-          </div>
-          <div>
-            <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#ff6b6b]">03 · Flooring</div>
-            <div class="mt-2 text-[15px] font-medium text-white">Hardwood, Tile & Luxury Vinyl</div>
-          </div>
-          <div>
-            <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#ff6b6b]">04 · Lighting</div>
-            <div class="mt-2 text-[15px] font-medium text-white">Layered Task & Decorative Pendants</div>
-          </div>
-        </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         SECTION 4: WHY REMODEL & KEY BENEFITS (Interactive Split Accordion)
+         SECTION 4: WHY REMODEL & KEY BENEFITS (key-benefits.jpg)
          ===================================================================== -->
     <section id="types" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#F7F5F2] text-[#1C1B1A]">
       <!-- Section Header -->
       <div class="flex justify-between items-end gap-8 flex-wrap mb-[clamp(48px,6vw,88px)]">
         <div class="reveal-item max-w-[780px]">
-          <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
-            <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-            <span>Key Benefits of Remodeling Your Kitchen</span>
-          </div>
-          <h2 class="mt-7 font-sans font-semibold text-[clamp(34px,4.4vw,68px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] text-balance">
+          <span class="block w-14 h-[1px] bg-[#AB0000] mb-7"></span>
+          <h2 class="font-sans font-semibold text-[clamp(34px,4.4vw,68px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] text-balance">
             Why Remodel Your Kitchen with Pacific West Home Builders?
           </h2>
         </div>
@@ -351,21 +271,20 @@ const ALL_GAL_SRCS = [
         </div>
       </div>
 
-      <!-- Interactive Split Grid (Matches Home Types.astro) -->
+      <!-- Interactive Split Grid -->
       <div class="v4-types grid grid-cols-1 min-[901px]:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-[clamp(32px,5vw,88px)] items-start">
         
-        <!-- Left Column: Accordion Selector -->
+        <!-- Left Column: Subheading + 4 Benefits Accordion -->
         <div>
-          <div class="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#1C1B1A] mb-5">
+          <h3 class="font-sans text-[14px] font-semibold tracking-[0.2em] uppercase text-[#AB0000] mb-5">
             Key Benefits of Remodeling Your Kitchen
-          </div>
+          </h3>
 
           <div class="border-t border-[#1C1B1A]">
             {BENEFITS.map((b, idx) => (
               <div 
                 class="type-item border-b border-[#E2DED7] py-7 cursor-pointer group"
                 data-type-index={idx}
-                data-type-name={b.n}
               >
                 <div class="flex items-baseline gap-6">
                   <span class="type-num text-[13px] font-medium text-[#8C877F] min-w-[24px] transition-colors duration-300">
@@ -379,14 +298,13 @@ const ALL_GAL_SRCS = [
 
                     <div class="type-body grid transition-all duration-500 ease-out overflow-hidden" style={idx === 0 ? 'grid-template-rows: 1fr;' : 'grid-template-rows: 0fr;'}>
                       <div class="overflow-hidden">
-                        <p class="mt-4 text-[15px] sm:text-[16px] font-light leading-[1.7] text-[#55524D] max-w-[540px]">
+                        <p class="mt-4 text-[15px] sm:text-[16px] font-light leading-[1.7] text-[#55524D] max-w-[540px] m-0">
                           {b.d}
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Arrow Indicator -->
                   <div class="type-arrow text-[#C9C4BB] transition-all duration-400 group-hover:text-[#AB0000]">
                     <svg class="w-[22px] h-[22px] transition-transform duration-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                       <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -397,49 +315,25 @@ const ALL_GAL_SRCS = [
               </div>
             ))}
           </div>
-
-          <!-- CTA -->
-          <div class="mt-9">
-            <button 
-              type="button" 
-              onclick="window.go('contact')"
-              class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[26px] py-[17px] bg-[#111111] text-white cursor-pointer transition-colors duration-300 hover:bg-[#AB0000]"
-            >
-              <span>Start Your Kitchen Remodel</span>
-            </button>
-          </div>
         </div>
 
-        <!-- Right Column: Sticky Image Preview (Unanchored on mobile via .v4-type-img in global.css) -->
+        <!-- Right Column: Original Image (key-benefits.jpg) -->
         <div class="v4-type-img sticky top-[120px] aspect-[4/5] max-h-[calc(100vh-160px)] w-full overflow-hidden bg-[#E2DED7] shadow-lg">
-          {BENEFITS.map((b, idx) => (
-            <div 
-              class={`type-image-pane absolute inset-0 transition-all duration-700 ease-in-out ${idx === 0 ? 'opacity-100 scale-100 z-10 pointer-events-auto' : 'opacity-0 scale-105 z-0 pointer-events-none'}`}
-              data-img-index={idx}
-            >
-              <img 
-                src={b.src} 
-                alt={b.n} 
-                class="w-full h-full object-cover object-center block"
-                loading="lazy"
-              />
-            </div>
-          ))}
-
-          <!-- Top Badge -->
-          <div id="type-badge" class="absolute left-0 top-0 z-[2] bg-[#111111] text-white px-[18px] py-3 text-[11px] font-semibold tracking-[0.2em] uppercase pointer-events-none shadow-md">
-            01 / 04 · A Kitchen Tailored to Your Life
-          </div>
+          <img 
+            src="/assets/imagery/kitchen/key-benefits.jpg" 
+            alt="Key Benefits of Remodeling Your Kitchen" 
+            class="w-full h-full object-cover object-center block"
+            loading="lazy"
+          />
         </div>
 
       </div>
     </section>
 
     <!-- =====================================================================
-         SECTION 5: OUR PROVEN KITCHEN REMODELING PROCESS (6-Step Timeline)
+         SECTION 5: OUR PROVEN KITCHEN REMODELING PROCESS (process-bg.webp)
          ===================================================================== -->
     <section id="process" class="process-section relative px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#111111] text-white overflow-hidden">
-      <!-- Original Process Background Image (process-bg.webp) -->
       <div class="absolute inset-0 z-0 pointer-events-none">
         <img 
           src="/assets/imagery/kitchen/process-bg.webp" 
@@ -450,14 +344,10 @@ const ALL_GAL_SRCS = [
         <div class="absolute inset-0 bg-gradient-to-b from-[#111111]/95 via-[#111111]/85 to-[#111111]/95"></div>
       </div>
 
-      <!-- Section Title & Verbatim Subtitle -->
       <div class="relative z-10 flex justify-between items-end gap-8 flex-wrap">
         <div class="reveal-item max-w-[820px]">
-          <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#ff6b6b]">
-            <span class="w-14 h-[1px] bg-[#ff6b6b]"></span>
-            <span>6-Step Process</span>
-          </div>
-          <h2 class="mt-7 font-sans font-semibold text-[clamp(34px,4.5vw,72px)] leading-[0.98] tracking-[-0.015em] uppercase text-white text-balance">
+          <span class="block w-14 h-[1px] bg-[#ff6b6b] mb-7"></span>
+          <h2 class="font-sans font-semibold text-[clamp(34px,4.5vw,72px)] leading-[0.98] tracking-[-0.015em] uppercase text-white text-balance">
             Our Proven Kitchen Remodeling Process
           </h2>
         </div>
@@ -489,23 +379,19 @@ const ALL_GAL_SRCS = [
               class="process-step-item relative pl-8 pb-10 last:pb-0 lg:pl-0 lg:pb-0 lg:pt-7" 
               data-step-index={idx}
             >
-              <!-- Node Dot -->
               <span 
                 class="step-node absolute left-[5px] -translate-x-1/2 top-1.5 lg:top-[-4px] lg:left-0 lg:translate-x-0 w-[11px] h-[11px] rounded-full bg-[#111111] border-2 border-white/40 transition-all duration-400 z-10"
               ></span>
               
-              <!-- Step Number -->
               <div class="step-num text-[13px] font-medium text-white/50 transition-colors duration-400">
-                {String(idx + 1).padStart(2, '0')}
+                {idx + 1}
               </div>
 
-              <!-- Step Title -->
               <div class="text-[19px] font-semibold uppercase mt-1 lg:mt-3.5 tracking-[0.01em] leading-[1.2]">
                 {st.title}
               </div>
 
-              <!-- Step Description -->
-              <p class="mt-2.5 lg:mt-3 text-[14px] font-light leading-[1.7] text-white/75 max-w-[520px] lg:max-w-none">
+              <p class="mt-2.5 lg:mt-3 text-[14px] font-light leading-[1.7] text-white/75 max-w-[520px] lg:max-w-none m-0">
                 {st.desc}
               </p>
             </div>
@@ -515,15 +401,12 @@ const ALL_GAL_SRCS = [
     </section>
 
     <!-- =====================================================================
-         SECTION 6: WHY CHOOSE PACIFIC WEST HOME BUILDERS? (Original Icons)
+         SECTION 6: WHY CHOOSE PACIFIC WEST HOME BUILDERS?
          ===================================================================== -->
     <section id="why-choose" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#F7F5F2] text-[#1C1B1A] border-b border-[#E2DED7]">
       <div class="reveal-item max-w-[880px]">
-        <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
-          <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-          <span>Pacific West Standard</span>
-        </div>
-        <h2 class="mt-7 font-sans font-semibold text-[clamp(34px,4.4vw,68px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] text-balance">
+        <span class="block w-14 h-[1px] bg-[#AB0000] mb-7"></span>
+        <h2 class="font-sans font-semibold text-[clamp(34px,4.4vw,68px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] text-balance">
           Why Choose Pacific West Home Builders?
         </h2>
       </div>
@@ -531,137 +414,56 @@ const ALL_GAL_SRCS = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-[clamp(44px,5.5vw,76px)]">
         {WHY_CHOOSE.map((card, idx) => (
           <div 
-            class="reveal-item bg-white border border-[#E2DED7] p-8 sm:p-9 flex flex-col justify-between transition-all duration-300 hover:border-[#1C1B1A] hover:shadow-lg group"
+            class="reveal-item bg-white border border-[#E2DED7] p-8 sm:p-9 flex flex-col justify-start transition-all duration-300 hover:border-[#1C1B1A] hover:shadow-lg group"
             style={`transition-delay: ${idx * 80}ms;`}
           >
-            <div>
-              <div class="flex items-center justify-between gap-4 mb-8">
-                <div class="w-14 h-14 rounded-full bg-[#111111] flex items-center justify-center p-3 transition-colors duration-300 group-hover:bg-[#AB0000]">
-                  <img 
-                    src={card.icon} 
-                    alt={card.title} 
-                    class="w-7 h-7 object-contain brightness-0 invert"
-                    loading="lazy"
-                  />
-                </div>
-                <span class="text-[12px] font-semibold tracking-[0.2em] text-[#8C877F]">
-                  0{idx + 1}
-                </span>
-              </div>
-
-              <h3 class="font-sans font-semibold text-[21px] leading-[1.18] uppercase tracking-[-0.01em] text-[#1C1B1A]">
-                {card.title}
-              </h3>
-
-              <p class="mt-4 text-[15px] font-light leading-[1.7] text-[#55524D]">
-                {card.desc}
-              </p>
+            <div class="w-14 h-14 rounded-full bg-[#111111] flex items-center justify-center p-3 mb-7 transition-colors duration-300 group-hover:bg-[#AB0000]">
+              <img 
+                src={card.icon} 
+                alt={card.title} 
+                class="w-7 h-7 object-contain brightness-0 invert"
+                loading="lazy"
+              />
             </div>
 
-            <div class="mt-8 pt-4 border-t border-[#EFECE7] flex items-center justify-between text-[11px] font-semibold tracking-[0.18em] uppercase text-[#8C877F] group-hover:text-[#AB0000] transition-colors">
-              <span>Pacific West</span>
-              <span>→</span>
-            </div>
+            <h3 class="font-sans font-semibold text-[21px] leading-[1.18] uppercase tracking-[-0.01em] text-[#1C1B1A]">
+              {card.title}
+            </h3>
+
+            <p class="mt-4 text-[15px] font-light leading-[1.7] text-[#55524D] m-0">
+              {card.desc}
+            </p>
           </div>
         ))}
       </div>
     </section>
 
     <!-- =====================================================================
-         SECTION 7: GALLERY (All 44 Original Kitchen Photos + Lightbox)
+         SECTION 7: GALLERY (All 44 Original Images)
          ===================================================================== -->
     <section id="projects" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-white text-[#1C1B1A]">
-      <!-- Header -->
-      <div class="flex justify-between items-end gap-8 flex-wrap mb-[clamp(40px,5vw,72px)]">
-        <div class="reveal-item">
-          <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
-            <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-            <span>Completed Projects</span>
-          </div>
-          <h2 class="mt-7 font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] max-w-[900px] text-balance">
-            Gallery
-          </h2>
-        </div>
-
-        <div class="reveal-item">
-          <button 
-            type="button" 
-            onclick="window.go('contact')"
-            class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[26px] py-[17px] bg-[#111111] text-white cursor-pointer transition-colors duration-300 hover:bg-[#AB0000]"
-          >
-            <span>CONTACT US NOW</span>
-          </button>
-        </div>
+      <div class="reveal-item mb-[clamp(40px,5vw,72px)]">
+        <span class="block w-14 h-[1px] bg-[#AB0000] mb-7"></span>
+        <h2 class="font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A]">
+          Gallery
+        </h2>
       </div>
 
-      <!-- Featured Bento Grid (First 12 Images) -->
-      <div class="v5-gal grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[clamp(160px,17vw,280px)] gap-3">
-        {FEATURED_GAL.map((item, idx) => (
-          <div 
-            class="reveal-item min-w-0" 
-            style={`grid-column: ${item.c} / span ${item.cs}; grid-row: ${item.r} / span ${item.rs}; transition-delay: ${(idx % 4) * 70}ms;`}
+      <!-- All 44 Original Gallery Photos in Architectural Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        {ALL_GAL_SRCS.map((src, idx) => (
+          <figure 
+            class="gallery-trigger reveal-item relative m-0 aspect-[4/3] w-full overflow-hidden bg-[#EFECE7] group cursor-pointer"
+            data-gal-index={idx}
           >
-            <figure 
-              class="gallery-trigger relative m-0 w-full h-full overflow-hidden bg-[#EFECE7] group cursor-pointer"
-              data-gal-index={idx}
-            >
-              <img 
-                src={item.src} 
-                alt={item.cap} 
-                class="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                loading="lazy"
-              />
-              <figcaption class="absolute inset-x-0 bottom-0 pt-12 pb-5 px-5 sm:px-6 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white text-[12px] font-semibold tracking-[0.16em] uppercase flex justify-between items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <span>{item.cap}</span>
-                <svg class="w-4 h-4 text-white flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </figcaption>
-            </figure>
-          </div>
+            <img 
+              src={src} 
+              alt="Kitchen Remodeling" 
+              class="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+          </figure>
         ))}
-      </div>
-
-      <!-- Remaining 32 Original Gallery Photos (Expandable so all 44 original images are included) -->
-      <div id="extra-gallery-grid" class="hidden grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-3">
-        {EXTRA_GAL.map((src, idx) => {
-          const num = idx + 13;
-          return (
-            <figure 
-              class="gallery-trigger relative m-0 aspect-[4/3] w-full overflow-hidden bg-[#EFECE7] group cursor-pointer"
-              data-gal-index={num - 1}
-            >
-              <img 
-                src={src} 
-                alt={`Kitchen Remodeling · ${num}`} 
-                class="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                loading="lazy"
-              />
-              <figcaption class="absolute inset-x-0 bottom-0 pt-10 pb-4 px-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white text-[11px] font-semibold tracking-[0.16em] uppercase flex justify-between items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <span>Kitchen Remodeling · {num}</span>
-                <svg class="w-3.5 h-3.5 text-white flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </figcaption>
-            </figure>
-          );
-        })}
-      </div>
-
-      <!-- Toggle All 44 Photos Button -->
-      <div class="mt-10 text-center">
-        <button 
-          id="toggle-gallery-btn"
-          type="button"
-          class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[30px] py-[18px] border border-[#1C1B1A] text-[#1C1B1A] bg-transparent cursor-pointer transition-all duration-300 hover:bg-[#111111] hover:text-white"
-        >
-          <span id="toggle-gallery-text">View All 44 Kitchen Photos</span>
-          <svg id="toggle-gallery-icon" class="w-4 h-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
       </div>
     </section>
 
@@ -711,177 +513,58 @@ const ALL_GAL_SRCS = [
         <img 
           id="lightbox-img" 
           src="" 
-          alt="Kitchen gallery preview" 
-          class="max-h-[78vh] max-w-full object-contain shadow-2xl"
+          alt="Gallery preview" 
+          class="max-h-[80vh] max-w-full object-contain shadow-2xl"
         />
-        <div id="lightbox-counter" class="mt-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-white/75">
-          01 / 44
-        </div>
       </div>
     </div>
 
     <!-- =====================================================================
-         SECTION 8: OTHER SERVICES (Cross-Navigation)
+         SECTION 8: START YOUR KITCHEN REMODEL TODAY (cta-bg.webp)
          ===================================================================== -->
-    <OtherServices />
-
-    <!-- =====================================================================
-         SECTION 9: START YOUR KITCHEN REMODEL TODAY (100% Verbatim CTA + Form)
-         ===================================================================== -->
-    <section id="contact" class="v5-contact grid grid-cols-1 min-[901px]:grid-cols-2">
+    <section id="contact" class="relative px-[clamp(20px,4vw,72px)] py-[clamp(96px,12vw,180px)] bg-[#111111] text-white overflow-hidden">
+      <img 
+        src="/assets/imagery/kitchen/cta-bg.webp" 
+        alt="Start Your Kitchen Remodel Today" 
+        class="w-full h-full object-cover object-center absolute inset-0 block opacity-40"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/50 pointer-events-none"></div>
       
-      <!-- Left Side: Original CTA Background Image (cta-bg.webp) & Verbatim Copy -->
-      <div class="relative min-h-[540px] min-[901px]:min-h-[86vh] text-white overflow-hidden flex items-end">
-        <img 
-          src="/assets/imagery/kitchen/cta-bg.webp" 
-          alt="Start Your Kitchen Remodel Today" 
-          class="w-full h-full object-cover object-center absolute inset-0 block"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/20 pointer-events-none"></div>
+      <div class="relative z-10 max-w-[820px] reveal-item">
+        <span class="block w-14 h-[1px] bg-[#AB0000] mb-7"></span>
         
-        <div class="relative z-10 p-[clamp(24px,4vw,72px)] max-w-[640px]">
-          <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#ff6b6b]">
-            <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-            <span>Get in Touch</span>
-          </div>
-          
-          <h2 class="mt-6 font-sans font-semibold text-[clamp(32px,3.8vw,62px)] leading-[0.98] tracking-[-0.015em] uppercase text-white text-balance">
-            Start Your Kitchen Remodel Today
-          </h2>
+        <h2 class="font-sans font-semibold text-[clamp(34px,4.5vw,72px)] leading-[0.98] tracking-[-0.015em] uppercase text-white text-balance">
+          Start Your Kitchen Remodel Today
+        </h2>
 
-          <p class="mt-6 text-[16px] font-light leading-[1.7] text-white/90">
-            Contact us today to schedule your consultation and begin your journey toward a kitchen remodel that transforms the way you live.
-          </p>
-
-          <p class="mt-4 text-[16px] font-light leading-[1.7] text-white/85">
-            Ready to turn your outdated kitchen into the heart of your dream home? Let Pacific West Home Builders help you create a space that combines beauty, functionality, and value.
-          </p>
-
-          <a 
-            href="tel:8883984499" 
-            class="inline-flex items-center gap-3.5 mt-8 text-white text-[22px] font-light transition-opacity hover:opacity-85"
-          >
-            <svg class="w-5 h-5 text-[#AB0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            <span>(888) 398-4499</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Side: Form Card -->
-      <div class="px-[clamp(20px,4vw,72px)] py-[clamp(56px,7vw,112px)] bg-white text-[#1C1B1A] flex flex-col justify-center">
-        <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
-          <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-          <span>Kitchen Remodeling</span>
-        </div>
-
-        <h3 class="mt-5 font-sans font-semibold text-[clamp(26px,2.8vw,42px)] leading-[1.02] tracking-[-0.015em] uppercase text-[#1C1B1A]">
-          Get in Touch
-        </h3>
-
-        <p class="mt-4 mb-9 font-light text-[15px] leading-[1.7] text-[#55524D] max-w-[460px]">
+        <p class="mt-7 text-[clamp(16px,1.3vw,20px)] font-light leading-[1.75] text-white/90 max-w-[720px]">
           Contact us today to schedule your consultation and begin your journey toward a kitchen remodel that transforms the way you live.
         </p>
 
-        <!-- Safe Lead Proxy Form -->
-        <form data-lead-form class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <input type="hidden" name="adu_type" value="Kitchen Remodeling" />
+        <p class="mt-4 text-[clamp(16px,1.3vw,20px)] font-light leading-[1.75] text-white/85 max-w-[720px]">
+          Ready to turn your outdated kitchen into the heart of your dream home? Let Pacific West Home Builders help you create a space that combines beauty, functionality, and value.
+        </p>
 
-          <!-- Full Name -->
-          <label class="flex flex-col gap-2">
-            <span class="text-[11px] font-medium tracking-[0.14em] uppercase text-[#1C1B1A]">
-              Full name <span class="text-[#AB0000]">*</span>
-            </span>
-            <input 
-              type="text" 
-              name="name" 
-              placeholder="Jane Doe" 
-              required 
-              class="w-full font-sans font-light text-[15px] text-[#1C1B1A] bg-white border border-[#C9C4BB] rounded-[2px] px-4 py-3.5 outline-none transition-all duration-200 focus:border-[#1C1B1A] focus:ring-2 focus:ring-[#AB0000]/20"
-            />
-          </label>
-
-          <!-- Phone -->
-          <label class="flex flex-col gap-2">
-            <span class="text-[11px] font-medium tracking-[0.14em] uppercase text-[#1C1B1A]">
-              Phone <span class="text-[#AB0000]">*</span>
-            </span>
-            <input 
-              type="tel" 
-              name="phone" 
-              placeholder="(000) 000-0000" 
-              required 
-              class="w-full font-sans font-light text-[15px] text-[#1C1B1A] bg-white border border-[#C9C4BB] rounded-[2px] px-4 py-3.5 outline-none transition-all duration-200 focus:border-[#1C1B1A] focus:ring-2 focus:ring-[#AB0000]/20"
-            />
-          </label>
-
-          <!-- Property Address -->
-          <label class="flex flex-col gap-2 col-span-full">
-            <span class="text-[11px] font-medium tracking-[0.14em] uppercase text-[#1C1B1A]">
-              Property address
-            </span>
-            <input 
-              type="text" 
-              name="address" 
-              placeholder="Street, city" 
-              class="w-full font-sans font-light text-[15px] text-[#1C1B1A] bg-white border border-[#C9C4BB] rounded-[2px] px-4 py-3.5 outline-none transition-all duration-200 focus:border-[#1C1B1A] focus:ring-2 focus:ring-[#AB0000]/20"
-            />
-          </label>
-
-          <!-- Project Details -->
-          <label class="flex flex-col gap-2 col-span-full">
-            <span class="text-[11px] font-medium tracking-[0.14em] uppercase text-[#1C1B1A]">
-              Project details
-            </span>
-            <textarea 
-              name="message" 
-              rows="4" 
-              placeholder="Tell us about your kitchen remodel vision..." 
-              class="w-full font-sans font-light text-[15px] text-[#1C1B1A] bg-white border border-[#C9C4BB] rounded-[2px] px-4 py-3.5 outline-none resize-y transition-all duration-200 focus:border-[#1C1B1A] focus:ring-2 focus:ring-[#AB0000]/20"
-            ></textarea>
-          </label>
-
-          <!-- Consent & Submit -->
-          <div class="col-span-full flex justify-between items-center gap-5 flex-wrap mt-2">
-            <label class="inline-flex items-start gap-3 cursor-pointer text-[13px] font-light leading-snug text-[#55524D] select-none">
-              <input 
-                type="checkbox" 
-                name="consent" 
-                checked 
-                required 
-                class="mt-0.5 rounded-[1px] accent-[#AB0000] w-4 h-4 cursor-pointer"
-              />
-              <span>I agree to be contacted about my project.</span>
-            </label>
-
-            <button 
-              type="submit" 
-              class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[28px] py-[17px] bg-[#AB0000] text-white cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-[#8F0000] active:scale-[0.98]"
-            >
-              <span>Get in Touch</span>
-              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
-            </button>
-          </div>
-        </form>
+        <div class="mt-10">
+          <a 
+            href="tel:8883984499" 
+            class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[30px] py-[18px] bg-[#AB0000] text-white cursor-pointer transition-colors duration-300 hover:bg-[#8F0000]"
+          >
+            <span>Get in Touch</span>
+          </a>
+        </div>
       </div>
-
     </section>
 
   </main>
 
   <Footer />
-  <AskUs />
 </Layout>
 
-<!-- Client Interactivity for Hero Cursor, Benefits Accordion, Process Scrubber & 44-Photo Lightbox -->
 <script is:inline define:vars={{ ALL_GAL_SRCS }}>
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Hero Circle Follower Logic (Clean version with click-through protection)
+    // 1. Hero Circle Follower Logic
     const heroSection = document.getElementById('top');
     const crosshairBox = document.getElementById('crosshair-box');
     const crosshairCircle = document.getElementById('crosshair-circle');
@@ -905,7 +588,7 @@ const ALL_GAL_SRCS = [
           setCrosshairPosition(e.clientX - r.left, e.clientY - r.top);
         });
 
-        const interactiveEls = heroSection.querySelectorAll('button, a, #scroll-prompt');
+        const interactiveEls = heroSection.querySelectorAll('button, a');
         interactiveEls.forEach((el) => {
           el.addEventListener('mouseenter', () => {
             crosshairBox.style.opacity = '0';
@@ -917,10 +600,8 @@ const ALL_GAL_SRCS = [
       }
     }
 
-    // 2. Key Benefits Interactive Split Accordion
+    // 2. Key Benefits Interactive Accordion
     const items = Array.from(document.querySelectorAll('.type-item'));
-    const images = Array.from(document.querySelectorAll('.type-image-pane'));
-    const badge = document.getElementById('type-badge');
     let activeIdx = 0;
 
     function setActiveBenefit(idx) {
@@ -954,21 +635,6 @@ const ALL_GAL_SRCS = [
           }
         }
       });
-
-      images.forEach((img, i) => {
-        if (i === idx) {
-          img.classList.remove('opacity-0', 'scale-105', 'z-0', 'pointer-events-none');
-          img.classList.add('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
-        } else {
-          img.classList.remove('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
-          img.classList.add('opacity-0', 'scale-105', 'z-0', 'pointer-events-none');
-        }
-      });
-
-      const benefitName = items[idx]?.getAttribute('data-type-name') || '';
-      if (badge) {
-        badge.textContent = `${String(idx + 1).padStart(2, '0')} / 04 · ${benefitName}`;
-      }
     }
 
     if (items.length > 0) {
@@ -1029,34 +695,9 @@ const ALL_GAL_SRCS = [
     window.addEventListener('resize', updateProcess);
     updateProcess();
 
-    // 4. Expandable 44-Photo Gallery & Fullscreen Lightbox
-    const toggleBtn = document.getElementById('toggle-gallery-btn');
-    const toggleText = document.getElementById('toggle-gallery-text');
-    const toggleIcon = document.getElementById('toggle-gallery-icon');
-    const extraGrid = document.getElementById('extra-gallery-grid');
-    let isExpanded = false;
-
-    if (toggleBtn && extraGrid) {
-      toggleBtn.addEventListener('click', () => {
-        isExpanded = !isExpanded;
-        if (isExpanded) {
-          extraGrid.classList.remove('hidden');
-          extraGrid.classList.add('grid');
-          if (toggleText) toggleText.textContent = 'Show Less Photos';
-          if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
-        } else {
-          extraGrid.classList.remove('grid');
-          extraGrid.classList.add('hidden');
-          if (toggleText) toggleText.textContent = 'View All 44 Kitchen Photos';
-          if (toggleIcon) toggleIcon.style.transform = 'none';
-          window.go('projects');
-        }
-      });
-    }
-
+    // 4. Fullscreen Lightbox for 44 Gallery Photos
     const lightbox = document.getElementById('kitchen-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCounter = document.getElementById('lightbox-counter');
     const btnClose = document.getElementById('lightbox-close');
     const btnPrev = document.getElementById('lightbox-prev');
     const btnNext = document.getElementById('lightbox-next');
@@ -1066,9 +707,6 @@ const ALL_GAL_SRCS = [
       if (!lightbox || !lightboxImg) return;
       currentGalIdx = (idx + ALL_GAL_SRCS.length) % ALL_GAL_SRCS.length;
       lightboxImg.src = ALL_GAL_SRCS[currentGalIdx];
-      if (lightboxCounter) {
-        lightboxCounter.textContent = `${String(currentGalIdx + 1).padStart(2, '0')} / ${ALL_GAL_SRCS.length}`;
-      }
       lightbox.classList.remove('hidden');
       lightbox.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -1111,9 +749,5 @@ const ALL_GAL_SRCS = [
   #crosshair-box,
   #crosshair-box * {
     pointer-events: none !important;
-  }
-  #scroll-prompt {
-    pointer-events: auto !important;
-    cursor: pointer !important;
   }
 </style>
