@@ -1,6 +1,6 @@
 ---
 const MORE = [
-  { name: 'Kitchen Remodeling', src: '/assets/imagery/stock/s05.jpg' },
+  { name: 'Kitchen Remodeling', src: '/assets/imagery/stock/s05.jpg', href: '/kitchen-remodeling/' },
   { name: 'Bathroom Remodeling', src: '/assets/imagery/stock/s19.jpg' },
   { name: 'Room Additions', src: '/assets/imagery/stock/s16.jpg' },
   { name: 'Garage Remodeling', src: '/assets/imagery/stock/pacific-garage.jpeg' },
@@ -30,8 +30,8 @@ const MORE = [
           style={`transition-delay: ${idx * 70}ms;`}
         >
           <a 
-            href="#contact" 
-            onclick="event.preventDefault(); window.go('contact');"
+            href={item.href || "#contact"} 
+            onclick={item.href ? undefined : "event.preventDefault(); window.go('contact');"}
             class="block text-[#1C1B1A] group cursor-pointer"
           >
             <div class={`overflow-hidden bg-[#EFECE7] ${isLandscaping ? 'aspect-[16/9] md:aspect-[4/5]' : 'aspect-[4/5]'}`}>
