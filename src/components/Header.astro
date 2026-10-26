@@ -9,7 +9,7 @@ const links = [
 ];
 
 const moreLinks = [
-  ['Kitchen Remodeling', '/kitchen-remodeling/'],
+  ['Kitchen Remodeling', 'services'],
   ['Bathroom Remodeling', 'services'],
   ['Room Additions', 'services'],
   ['FAQ', 'faq'],
@@ -22,7 +22,7 @@ const moreLinks = [
   <div class="h-[84px] px-[clamp(20px,4vw,72px)] flex items-center gap-8 justify-between">
     
     <!-- Brand Logo -->
-    <a href="/" class="flex-shrink-0 transition-opacity hover:opacity-90" onclick="if (window.location.pathname === '/') { event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }">
+    <a href="#top" class="flex-shrink-0 transition-opacity hover:opacity-90" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
       <img src="/assets/logo-white.png" alt="Pacific West Home Builders" class="h-[46px] w-auto block" />
     </a>
 
@@ -54,9 +54,9 @@ const moreLinks = [
           <div class="bg-[#111111] border border-white/10 py-2.5 min-w-[230px] shadow-2xl">
             {moreLinks.map(([label, id]) => (
               <a 
-                href={id.startsWith('/') ? id : `#${id}`} 
+                href={`#${id}`} 
                 class="block px-[22px] py-[11px] text-[#FFFFFF] text-[14px] font-light transition-colors hover:text-[#ff8a8a] hover:bg-white/[0.04]"
-                onclick={id.startsWith('/') ? undefined : `event.preventDefault(); window.go('${id}');`}
+                onclick={`event.preventDefault(); window.go('${id}');`}
               >
                 {label}
               </a>

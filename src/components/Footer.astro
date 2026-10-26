@@ -15,7 +15,7 @@ const planLinks = [
 ];
 
 const moreLinks = [
-  { label: 'Kitchen Remodeling', href: '/kitchen-remodeling/' },
+  { label: 'Kitchen Remodeling', id: 'services' },
   { label: 'Bathroom Remodeling', id: 'services' },
   { label: 'Room Additions', id: 'services' },
   { label: 'Reviews', id: 'reviews' }
@@ -79,8 +79,8 @@ const moreLinks = [
       <div class="space-y-3">
         {moreLinks.map(item => (
           <a 
-            href={item.href || `#${item.id}`} 
-            onclick={item.href ? undefined : `event.preventDefault(); window.go('${item.id}');`} 
+            href={`#${item.id}`} 
+            onclick={`event.preventDefault(); window.go('${item.id}');`} 
             class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
           >
             {item.label}
