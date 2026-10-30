@@ -1,5 +1,5 @@
 ---
-const STAGES = [
+const DEFAULT_STAGES = [
   {
     k: 'Pacific West',
     t: 'Your ADU, built start to finish',
@@ -67,6 +67,18 @@ const STAGES = [
     cta: true
   }
 ];
+
+const { stages = DEFAULT_STAGES } = Astro.props;
+const STAGES = stages.map((stage, index) => ({
+  ...stage,
+  k: stage.kicker || stage.k,
+  t: stage.title || stage.t,
+  d: stage.description || stage.d,
+  src: stage.imageUrl || stage.src,
+  h1: stage.isH1 ?? stage.h1 ?? index === 0,
+  intro: index === 0,
+  cta: stage.showCtas ?? stage.cta ?? index === stages.length - 1,
+}));
 
 const N = STAGES.length;
 ---

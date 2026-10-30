@@ -1,15 +1,27 @@
 ---
 import '../styles/global.css';
+import { getPageSeo } from '../lib/page-seo.js';
+import Tracking from '../components/Tracking.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  socialImage?: string;
 }
 
 const {
   title = "Pacific West Home Builders · ADUs",
-  description = "Pacific West designs, permits and builds accessory dwelling units across Southern California. Custom detached ADUs, garage conversions, and additions."
+  description = "Pacific West designs, permits and builds accessory dwelling units across Southern California. Custom detached ADUs, garage conversions, and additions.",
+  canonical,
+  socialImage
 } = Astro.props;
+
+const seo = await getPageSeo(`${Astro.url.pathname}${Astro.url.search}`, { title, description, canonical, socialImage });
+const seoTitle = seo.title || title;
+const seoDescription = seo.description || description;
+const seoCanonical = seo.canonical || canonical;
+const seoImage = seo.socialImage || socialImage;
 ---
 
 <!DOCTYPE html>
@@ -17,16 +29,29 @@ const {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
+  <title>{seoTitle}</title>
+  {seoDescription && <meta name="description" content={seoDescription} />}
+  {seo.noIndex && <meta name="robots" content="noindex, nofollow" />}
+  {seoCanonical && <link rel="canonical" href={seoCanonical} />}
+  {seoCanonical && <meta property="og:url" content={seoCanonical} />}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={seo.openGraphTitle || seoTitle} />
+  {seoDescription && <meta property="og:description" content={seo.openGraphDescription || seoDescription} />}
+  <meta name="twitter:card" content={seoImage ? "summary_large_image" : "summary"} />
+  <meta name="twitter:title" content={seo.openGraphTitle || seoTitle} />
+  {seoDescription && <meta name="twitter:description" content={seo.openGraphDescription || seoDescription} />}
+  {seoImage && <meta property="og:image" content={seoImage} />}
+  {seoImage && <meta name="twitter:image" content={seoImage} />}
   <link rel="icon" type="image/png" href="/assets/logo-black.png" />
   
   <!-- Google Fonts: Poppins & Cormorant Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+  <Tracking />
 </head>
 <body class="bg-[#111111] text-[#1C1B1A] font-sans antialiased overflow-x-hidden selection:bg-[#AB0000] selection:text-white">
+  <Tracking position="body" />
   <slot />
 
   <!-- Universal Client Interactivity -->
@@ -68,14 +93,26 @@ const {
           e.preventDefault();
           const submitBtn = form.querySelector('button[type="submit"]');
           const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+          const showStatus = (message, success) => {
+            let status = form.querySelector('[data-form-status]');
+            if (!status) {
+              status = document.createElement('p');
+              status.dataset.formStatus = '';
+              status.setAttribute('role', 'status');
+              form.prepend(status);
+            }
+            status.className = `col-span-full text-sm leading-6 ${success ? 'text-green-700' : 'text-[#AB0000]'}`;
+            status.textContent = message;
+          };
 
           const payload = {
             name: form.querySelector('[name="name"]')?.value?.trim() || '',
             phone: form.querySelector('[name="phone"]')?.value?.trim() || '',
+            email: form.querySelector('[name="email"]')?.value?.trim() || '',
             address: form.querySelector('[name="address"]')?.value?.trim() || '',
             adu_type: form.querySelector('[name="adu_type"]')?.value?.trim() || '',
             message: form.querySelector('[name="message"]')?.value?.trim() || '',
-            landing: 'pacific-v5-adu',
+            landing: form.dataset.landing || 'pacific-v5-adu',
             full_url: window.location.href,
             timestamp: new Date().toISOString()
           };
@@ -94,13 +131,23 @@ const {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(payload)
-            }).catch(() => null);
-
-            // Redirección inmediata a Thank You Page (estándar de alta conversión)
-            window.location.href = '/thank-you/';
+            });
+            if (!response.ok) throw new Error(`Lead endpoint returned ${response.status}`);
+            showStatus('Thank you. Your request has been sent. Our team will be in touch soon.', true);
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.style.cursor = 'default';
+              submitBtn.innerHTML = 'Request sent';
+            }
           } catch (err) {
-            console.warn('Fallback redirection to thank you page:', err);
-            window.location.href = '/thank-you/';
+            console.warn('Lead submission failed:', err);
+            showStatus('We could not send your request. Please try again or call (888) 398-4499.', false);
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.style.opacity = '';
+              submitBtn.style.cursor = '';
+              submitBtn.innerHTML = originalBtnHtml;
+            }
           }
         });
       });

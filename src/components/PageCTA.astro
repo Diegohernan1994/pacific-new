@@ -1,0 +1,36 @@
+---
+interface Props {
+  actionHref?: string;
+  actionLabel?: string;
+  kicker?: string;
+  title?: string;
+  lead?: string;
+  image?: string;
+}
+
+const {
+  actionHref = '#contact',
+  actionLabel = 'Contact us',
+  kicker = 'Start Your Next Project',
+  title = 'Ready to start your project?',
+  lead = 'Tell us what you have in mind. Our team can help you plan the next step for your home.',
+  image = '/assets/imagery/gallery-optimized/02.webp'
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-[#111111] px-[clamp(24px,7vw,112px)] py-[clamp(72px,10vw,144px)] text-white">
+  <img src={image} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover" loading="lazy" />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#111111] via-[#111111]/90 to-[#111111]/55"></div>
+  <div class="mx-auto grid max-w-[1500px] items-end gap-8 md:grid-cols-[1.2fr_.8fr] md:gap-16">
+    <div>
+      <div class="mb-7 flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff6b6b]"><span class="h-px w-14 bg-[#AB0000]"></span><span>{kicker}</span></div>
+      <h2 class="m-0 max-w-[780px] text-balance font-sans text-[clamp(36px,5vw,72px)] font-semibold uppercase leading-[0.98] tracking-[-0.025em]">{title}</h2>
+    </div>
+    <div class="max-w-[520px]">
+      <p class="m-0 text-[16px] font-light leading-[1.8] text-white/75 sm:text-[18px]">{lead}</p>
+      <a href={actionHref} class="mt-8 inline-flex items-center gap-4 bg-[#AB0000] px-7 py-[18px] text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#8F0000]">
+        <span>{actionLabel}</span><span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>

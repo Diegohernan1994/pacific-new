@@ -1,25 +1,66 @@
 ---
-const aduTypes = [
-  'Detached ADU',
-  'Attached ADU',
-  'Garage Conversion',
-  'JADU',
-  'Second-story ADU'
+import { getWebsiteSettings } from '../lib/sanity-content.js';
+const settings = await getWebsiteSettings();
+const offices = settings.offices?.length ? settings.offices : [
+  { name: 'Encino', address: '16000 Ventura Blvd Ste 900', city: 'Encino, CA 91436' },
+  { name: 'Pasadena', address: '215 N Marengo Ave Ste 2091', city: 'Pasadena, CA 91101' }
 ];
+const socialLinks = settings.socialLinks?.length ? settings.socialLinks : [
+  { label: 'Instagram', url: 'https://instagram.com' },
+  { label: 'Facebook', url: 'https://facebook.com' }
+];
+interface Props {
+  variant?: 'adu' | 'kitchen';
+}
 
-const planLinks = [
-  { label: 'Permit process', id: 'process' },
-  { label: 'Cost calculator', id: 'calculator' },
-  { label: '$0 down financing', id: 'calculator' },
-  { label: 'FAQ', id: 'faq' }
-];
+const { variant = 'adu' } = Astro.props;
+const isKitchen = variant === 'kitchen';
+const isHome = Astro.url.pathname === '/';
+const footerHref = (id) => id === 'reviews' && !isHome ? '/reviews/#reviews' : id === '/' ? '/' : `#${id}`;
 
-const moreLinks = [
-  { label: 'Kitchen Remodeling', id: 'services' },
-  { label: 'Bathroom Remodeling', id: 'services' },
-  { label: 'Room Additions', id: 'services' },
-  { label: 'Reviews', id: 'reviews' }
-];
+const primaryLinks = isKitchen
+  ? [
+      { label: 'Your Dream Kitchen', id: 'dream-kitchen' },
+      { label: 'What We Bring', id: 'what-we-bring' },
+      { label: 'Key Benefits', id: 'types' },
+      { label: 'Our Process', id: 'process' },
+      { label: 'Gallery', id: 'projects' }
+    ]
+  : [
+      { label: 'Detached ADU', id: 'types' },
+      { label: 'Attached ADU', id: 'types' },
+      { label: 'Garage Conversion', id: 'types' },
+      { label: 'JADU', id: 'types' },
+      { label: 'Second-story ADU', id: 'types' }
+    ];
+
+const planLinks = isKitchen
+  ? [
+      { label: 'Why Remodel', id: 'types' },
+      { label: 'Why Choose Us', id: 'why-choose' },
+      { label: 'Client Reviews', id: 'reviews' },
+      { label: 'Contact Us', id: 'contact' }
+    ]
+  : [
+      { label: 'Permit process', id: 'process' },
+      { label: 'Cost calculator', id: 'calculator' },
+      { label: '$0 down financing', id: 'calculator' },
+      { label: 'FAQ', id: 'faq' }
+    ];
+
+const moreLinks = isKitchen
+  ? [
+      { label: 'Kitchen Remodeling', id: 'top' },
+      { label: 'Home', id: '/' },
+      { label: 'Gallery', id: 'projects' },
+      { label: 'Reviews', id: 'reviews' }
+    ]
+  : [
+      { label: 'Kitchen Remodeling', id: 'services' },
+      { label: 'Bathroom Remodeling', id: 'services' },
+      { label: 'Room Additions', id: 'services' },
+      { label: 'Reviews', id: 'reviews' }
+    ];
 ---
 
 <footer class="px-[clamp(20px,4vw,72px)] pt-[clamp(72px,8vw,120px)] pb-8 bg-[#111111] text-white">
@@ -31,23 +72,22 @@ const moreLinks = [
         <img src="/assets/logo-white.png" alt="Pacific West Home Builders" class="h-[60px] w-auto block" />
       </a>
       <p class="font-light text-[14px] leading-[1.7] text-white/70 mt-6 max-w-[280px]">
-        ADU design, permits and construction across Southern California.
+        {settings.footerDescription || (isKitchen ? 'Kitchen remodeling across Southern California.' : 'ADU design, permits and construction across Southern California.')}
       </p>
     </div>
 
     <!-- ADUs Column -->
     <div>
       <div class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-[22px] text-white/50">
-        ADUs
+        {isKitchen ? 'Kitchen' : 'ADUs'}
       </div>
       <div class="space-y-3">
-        {aduTypes.map(name => (
+        {primaryLinks.map(item => (
           <a 
-            href="#types" 
-            onclick="event.preventDefault(); window.go('types');" 
+            href={footerHref(item.id)} 
             class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
           >
-            {name}
+            {item.label}
           </a>
         ))}
       </div>
@@ -61,8 +101,7 @@ const moreLinks = [
       <div class="space-y-3">
         {planLinks.map(item => (
           <a 
-            href={`#${item.id}`} 
-            onclick={`event.preventDefault(); window.go('${item.id}');`} 
+            href={footerHref(item.id)} 
             class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
           >
             {item.label}
@@ -79,8 +118,7 @@ const moreLinks = [
       <div class="space-y-3">
         {moreLinks.map(item => (
           <a 
-            href={`#${item.id}`} 
-            onclick={`event.preventDefault(); window.go('${item.id}');`} 
+            href={footerHref(item.id)} 
             class="block text-[14px] font-light text-white transition-colors hover:text-[#ff8a8a]"
           >
             {item.label}
@@ -95,27 +133,17 @@ const moreLinks = [
         Visit
       </div>
       <div class="text-[14px] font-light leading-[1.7] text-white/90">
-        16000 Ventura Blvd Ste 900<br/>Encino, CA 91436
-      </div>
-      <div class="text-[14px] font-light leading-[1.7] text-white/90 mt-3.5">
-        215 N Marengo Ave Ste 2091<br/>Pasadena, CA 91101
+        {offices.map((office) => <div class="mb-3.5"><span>{office.address}</span><br/><span>{office.city}</span></div>)}
       </div>
 
       <!-- Social & Map Icons -->
       <div class="flex items-center gap-4 mt-7">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Instagram">
+        {socialLinks.map((item) => <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#AB0000] transition-colors" aria-label={item.label}>
           <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            {item.label.toLowerCase().includes('facebook') ? <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path> : <><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></>}
           </svg>
-        </a>
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Facebook">
-          <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-          </svg>
-        </a>
-        <a href="#contact" onclick="event.preventDefault(); window.go('contact');" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Location">
+        </a>)}
+        <a href="#contact" class="text-white hover:text-[#AB0000] transition-colors" aria-label="Location">
           <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
@@ -127,7 +155,7 @@ const moreLinks = [
 
   <!-- Copyright & License -->
   <div class="flex justify-between items-center flex-wrap gap-4 mt-20 pt-6 border-t border-white/[0.12] text-[12px] font-light text-white/55">
-    <span>Pacific West Home Builders © 2026 · License #1111181</span>
-    <span>(888) 398-4499 · info@pwhbuilders.com</span>
+    <span>{settings.companyName || 'Pacific West Home Builders'} © {new Date().getFullYear()} · License #{settings.license || '1111181'}</span>
+    <span>{settings.phone || '(888) 398-4499'} · {settings.email || 'info@pwhbuilders.com'}</span>
   </div>
 </footer>

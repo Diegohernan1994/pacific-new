@@ -1,5 +1,5 @@
 ---
-const GAL = [
+const DEFAULT_GAL = [
   { src: '/assets/imagery/gallery/02.png', cap: 'Detached ADU, aerial', c: 1, r: 1, cs: 2, rs: 2 },
   { src: '/assets/imagery/gallery/03.jpg', cap: 'Bathroom', c: 3, r: 1, cs: 1, rs: 2 },
   { src: '/assets/imagery/gallery/01.png', cap: 'Detached ADU', c: 4, r: 1, cs: 1, rs: 1 },
@@ -13,6 +13,13 @@ const GAL = [
   { src: '/assets/imagery/gallery/18.png', cap: 'Kitchen', c: 3, r: 6, cs: 1, rs: 1 },
   { src: '/assets/imagery/gallery/20.png', cap: 'Bathroom', c: 4, r: 5, cs: 1, rs: 2 }
 ];
+const { content = {} } = Astro.props;
+const GAL = content.items?.length
+  ? content.items.map((item, idx) => ({ ...DEFAULT_GAL[idx % DEFAULT_GAL.length], ...item, src: item.imageUrl || item.src, cap: item.caption || item.cap }))
+  : DEFAULT_GAL;
+const kicker = content.kicker || 'ADU gallery';
+const title = content.title || 'ADUs we’ve built';
+const ctaLabel = content.ctaLabel || 'Start your ADU';
 ---
 
 <section id="projects" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-white text-[#1C1B1A]">
@@ -21,10 +28,10 @@ const GAL = [
     <div class="reveal-item">
       <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
         <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-        <span>ADU gallery</span>
+        <span>{kicker}</span>
       </div>
       <h2 class="mt-7 font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] max-w-[900px] text-balance">
-        ADUs we’ve built
+        {title}
       </h2>
     </div>
 
@@ -34,7 +41,7 @@ const GAL = [
         onclick="window.go('contact')"
         class="inline-flex items-center gap-3 font-sans text-[12px] font-semibold tracking-[0.18em] uppercase px-[26px] py-[17px] bg-[#111111] text-white cursor-pointer transition-colors duration-300 hover:bg-[#AB0000]"
       >
-        <span>Start your ADU</span>
+        <span>{ctaLabel}</span>
       </button>
     </div>
   </div>

@@ -1,5 +1,5 @@
 ---
-const FAQS = [
+const DEFAULT_FAQS = [
   {
     q: 'Can I build an ADU on my property?',
     a: 'Most single-family lots in California qualify. State law allows an ADU and a JADU on most single-family lots. We confirm setbacks, utilities and zoning during a free site visit.'
@@ -25,6 +25,10 @@ const FAQS = [
     a: 'We work with lending partners that can fund construction with no money down, so payments start on a schedule you approve. Terms depend on credit and property.'
   }
 ];
+const { content = {} } = Astro.props;
+const FAQS = content.items?.length ? content.items.map((item) => ({ q: item.question || item.q, a: item.answer || item.a })) : DEFAULT_FAQS;
+const kicker = content.kicker || 'FAQ';
+const title = content.title || 'ADU questions, answered';
 ---
 
 <section id="faq" class="v4-faq px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#F7F5F2] text-[#1C1B1A] grid grid-cols-1 min-[901px]:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-10 min-[901px]:gap-[clamp(32px,6vw,120px)]">
@@ -33,10 +37,10 @@ const FAQS = [
   <div class="reveal-item">
     <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
       <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-      <span>FAQ</span>
+        <span>{kicker}</span>
     </div>
     <h2 class="mt-7 font-sans font-semibold text-[clamp(32px,3.6vw,60px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A]">
-      ADU questions, answered
+      {title}
     </h2>
   </div>
 

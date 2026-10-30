@@ -1,0 +1,107 @@
+---
+import { getPageSeo } from '../lib/page-seo.js';
+import Tracking from '../components/Tracking.astro';
+import { getAduTypes, getInternalPages, getWebsiteSettings } from '../lib/sanity-content.js';
+
+const { title = 'Pacific West Home Builders' } = Astro.props;
+const [aduTypes, pages, settings] = await Promise.all([getAduTypes(), getInternalPages(), getWebsiteSettings()]);
+const seoPath = `${Astro.url.pathname}${Astro.url.search}`;
+const currentPage = pages[Astro.url.pathname];
+const pageFallbackTitle = currentPage?.metaTitle || (currentPage?.heading ? currentPage.heading + ' | Pacific West Home Builders' : title);
+const pageFallbackDescription = currentPage?.metaDescription || currentPage?.intro;
+const seo = await getPageSeo(seoPath, { title: pageFallbackTitle, description: pageFallbackDescription, socialImage: currentPage?.heroImageUrl });
+const seoTitle = seo.title || pageFallbackTitle;
+const cmsPayload = JSON.stringify({ aduTypes, pages, settings }).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seoTitle}</title>
+    {seo.description && <meta name="description" content={seo.description} />}
+    {seo.noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {seo.canonical && <link rel="canonical" href={seo.canonical} />}
+    {seo.canonical && <meta property="og:url" content={seo.canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seo.openGraphTitle || seoTitle} />
+    {seo.openGraphDescription && <meta property="og:description" content={seo.openGraphDescription} />}
+    {seo.socialImage && <meta property="og:image" content={seo.socialImage} />}
+    <meta name="twitter:card" content={seo.socialImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={seo.openGraphTitle || seoTitle} />
+    {seo.openGraphDescription && <meta name="twitter:description" content={seo.openGraphDescription} />}
+    {seo.socialImage && <meta name="twitter:image" content={seo.socialImage} />}
+    <link rel="stylesheet" href="/internals/styles.css" />
+    <style is:inline>
+      html{scroll-behavior:auto}body{overflow-x:hidden;background:#111}a{color:inherit;text-decoration:none}a:hover{color:inherit}::selection{background:#AB0000;color:#fff}@keyframes v4Rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+      @media(max-width:1180px){.v4-nav{display:none!important}}@media(max-width:760px){.v4-phone,.v4-dots{display:none!important}}
+      @media(max-width:900px){.v4-types,.v4-calc,.v4-faq,.v4-contact{grid-template-columns:minmax(0,1fr)!important}}@media(max-width:760px){.v5-gal{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-flow:dense}.v5-gal>*{grid-column:auto!important;grid-row:auto!important}}@media(max-width:900px){.v4-type-img{position:relative!important;top:0!important;order:-1;aspect-ratio:4/3!important}}@keyframes v5Zoom{from{transform:scale(1.08)}to{transform:none}}@media(max-width:1180px){.v5-burger{display:grid!important}}@media(max-width:900px){.pg-2{grid-template-columns:minmax(0,1fr)!important}.pg-2>*{order:0!important}}
+    </style>
+    <style is:inline>
+      @media(max-width:900px){
+        #root .pg-2,#root .v4-types,#root .v4-calc,#root .v4-faq,#root .v4-contact,#root .v5-contact{grid-template-columns:minmax(0,1fr)!important}
+        #root .pg-2{gap:32px!important}
+        #root .pg-2>*{order:0!important}
+        #root .v4-type-img{position:relative!important;top:auto!important;order:-1!important;aspect-ratio:4/3!important;max-height:none!important}
+        #root .v5-contact>div:first-child{min-height:500px!important}
+        #root .pg-2 aside{position:static!important;top:auto!important}
+      }
+      @media(max-width:1023px){
+        #root .v5-process-track{margin-top:48px!important}
+        #root .v5-process-progress{display:none!important}
+        #root .v5-process-grid,#root .v5-remodel-process-grid{grid-template-columns:minmax(0,1fr)!important;gap:0!important;position:relative;padding-left:30px!important;margin-left:4px;border-left:1px solid rgba(255,255,255,.24)}
+        #root .v5-process-step{padding-top:8px!important;padding-bottom:32px!important}
+        #root .v5-process-step>span:first-child{top:10px!important;left:-35px!important}
+        #root .v5-remodel-process-grid>div{position:relative;padding:8px 0 28px!important;border-top:0!important}
+        #root .v5-remodel-process-grid>div:before{content:'';position:absolute;top:9px;left:-35px;width:9px;height:9px;border-radius:50%;background:#111;border:1px solid #AB0000;box-shadow:0 0 0 4px rgba(171,0,0,.12)}
+      }
+      @media(max-width:760px){
+        #root [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+        #root .v5-contact form{grid-template-columns:minmax(0,1fr)!important}
+        #root .v5-contact>div:nth-child(2){padding:56px 20px!important}
+        #root .v5-gal{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-flow:dense}
+        #root .v5-gal>*{grid-column:auto!important;grid-row:auto!important}
+        #root .v5-gal>:last-child:nth-child(odd){grid-column:1/-1!important}
+        #root .v5-icon-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+        #root .v5-icon-grid>:last-child:nth-child(odd){grid-column:1/-1!important}
+        #root .v5-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+        #root .v5-service-grid>:last-child:nth-child(odd){grid-column:1/-1!important}
+        #root .v5-service-grid>:last-child:nth-child(odd) a>div:first-child{aspect-ratio:16/9!important}
+        #root .v5-project-gallery{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;column-width:auto!important;column-gap:12px!important;gap:12px!important}
+        #root .v5-project-gallery>figure{margin:0!important;break-inside:auto!important}
+        #root .v5-project-gallery>figure:last-child:nth-child(odd){grid-column:1/-1!important}
+      }
+    </style>
+    <script is:inline src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+    <script is:inline src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+    <script is:inline src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+      <Tracking />
+  </head>
+  <body>
+    <Tracking position="body" />
+    <div id="root"></div>
+    <script is:inline define:vars={{ cmsPayload }}>window.PW_CMS = JSON.parse(cmsPayload);</script>
+    <script is:inline>window.PW_SPA=false;</script>
+    <script is:inline src="/internals/ui_kits/website-v5/imgdata-1.js"></script>
+    <script is:inline src="/internals/ui_kits/website-v5/imgdata-2.js"></script>
+    <script is:inline src="/internals/ui_kits/website-v5/imgdata-3.js"></script>
+    <script is:inline>
+      (function(){var ce=React.createElement;React.createElement=function(t,p){if(p&&typeof p.src==='string'){var k=p.src.replace(/^(\.\/)+/,'');if(window.PW_IMG&&window.PW_IMG[k]){arguments[1]=Object.assign({},p,{src:window.PW_IMG[k]});}}return ce.apply(this,arguments);};})();
+    </script>
+    <script is:inline src="/internals/_ds_bundle.js"></script>
+    <script is:inline src="/internals/ui_kits/website-v5/image-slot.js"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/CoreV5.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/BuildHeroV5.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/AduV5.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/MoreV5.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/SiteV5.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/FinanceA.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/FinanceB.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/PagesAdu.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/PagesRemodel.jsx"></script>
+    <script is:inline type="text/babel" src="/internals/ui_kits/website-v5/PagesCompany.jsx"></script>
+    <script is:inline type="text/babel">
+      ReactDOM.createRoot(document.getElementById('root')).render(<SiteRouter/>);
+    </script>
+  </body>
+</html>

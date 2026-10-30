@@ -1,5 +1,5 @@
 ---
-const TYPES = [
+const DEFAULT_TYPES = [
   {
     n: 'Detached ADU',
     tag: 'A separate home in your backyard',
@@ -46,6 +46,17 @@ const TYPES = [
     src: '/assets/imagery/types/second-story-adu.jpg'
   }
 ];
+const { items = DEFAULT_TYPES, content = {} } = Astro.props;
+const TYPES = items.map((type) => ({
+  ...type,
+  n: type.name || type.n,
+  d: type.description || type.d,
+  best: type.bestFor || type.best,
+  src: type.imageUrl || type.src,
+}));
+const kicker = content.kicker || 'ADU types';
+const title = content.title || 'Five ways to add a home to your lot';
+const intro = content.description || 'Not sure which fits your property? We confirm setbacks, utilities and zoning in a free site visit.';
 ---
 
 <section id="types" class="px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#F7F5F2] text-[#1C1B1A]">
@@ -54,16 +65,16 @@ const TYPES = [
     <div class="reveal-item">
       <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#AB0000]">
         <span class="w-14 h-[1px] bg-[#AB0000]"></span>
-        <span>ADU types</span>
+        <span>{kicker}</span>
       </div>
       <h2 class="mt-7 font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-[#1C1B1A] max-w-[900px] text-balance">
-        Five ways to add a home to your lot
+        {title}
       </h2>
     </div>
 
     <div class="reveal-item max-w-[400px]">
       <p class="m-0 text-[16px] font-light leading-[1.7] text-[#55524D]">
-        Not sure which fits your property? We confirm setbacks, utilities and zoning in a free site visit.
+        {intro}
       </p>
     </div>
   </div>

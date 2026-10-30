@@ -1,0 +1,14 @@
+---
+import { getWebsiteSettings } from '../lib/sanity-content.js';
+const settings = await getWebsiteSettings();
+const gtmId = /^GTM-[A-Z0-9]+$/i.test(settings.googleTagManagerId || '') ? settings.googleTagManagerId : '';
+const { position = 'head' } = Astro.props;
+---
+{gtmId && position === 'head' && <>
+  <script is:inline define:vars={{ gtmId }}>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+  </script>
+  <script async src={'https://www.googletagmanager.com/gtm.js?id=' + gtmId}></script>
+</>}
+{gtmId && position === 'body' && <noscript><iframe src={'https://www.googletagmanager.com/ns.html?id=' + gtmId} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>}

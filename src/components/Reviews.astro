@@ -1,5 +1,5 @@
 ---
-const REVIEWS = [
+const DEFAULT_REVIEWS = [
   {
     quote: "Pacific West Home Builders made my ADU project so much easier than I expected. There were a few challenges along the way, but they handled everything smoothly and always found the right solutions.",
     author: "Barbara J.",
@@ -19,9 +19,16 @@ const REVIEWS = [
     platform: "google"
   }
 ];
+const { items = DEFAULT_REVIEWS } = Astro.props;
+const REVIEWS = (Array.isArray(items) ? items : DEFAULT_REVIEWS).map((review) => ({
+  ...review,
+  author: review.author || review.name,
+  service: review.service || review.project,
+  platform: (review.platform || 'yelp').toLowerCase(),
+}));
 ---
 
-<section id="reviews" class="relative px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#111111] text-white overflow-hidden">
+<section id="reviews" hidden={REVIEWS.length === 0} class="relative px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#111111] text-white overflow-hidden">
   
   <!-- 5 Red Stars -->
   <div class="flex items-center gap-1.5 mb-9">
@@ -38,6 +45,7 @@ const REVIEWS = [
       <div 
         class={`review-slide ${idx === 0 ? 'block' : 'hidden'} animate-[v4Rise_0.9s_var(--ease-out)_both]`}
         data-review-index={idx}
+        data-platform={rev.platform}
       >
         <blockquote class="m-0 font-light text-[clamp(26px,3vw,48px)] leading-[1.3] tracking-[-0.01em] text-pretty">
           “{rev.quote}”
@@ -97,7 +105,7 @@ const REVIEWS = [
     const badgeYelp = document.getElementById('badge-yelp');
     const badgeGoogle = document.getElementById('badge-google');
     const badgeTitle = document.getElementById('badge-title');
-    const platforms = ['yelp', 'google', 'google'];
+    const platforms = slides.map((slide) => slide.dataset.platform || 'yelp');
     let currentIdx = 0;
     let timer = null;
 

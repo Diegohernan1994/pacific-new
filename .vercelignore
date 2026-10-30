@@ -1,0 +1,6 @@
+# Keep the prebuilt static site in dist; omit local-only caches and tooling.
+.codex-npm-cache/
+node_modules/
+.astro/
+.git/
+.vercel/

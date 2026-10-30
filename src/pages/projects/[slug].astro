@@ -1,0 +1,21 @@
+---
+import ProjectCasePage from '../../components/ProjectCasePage.astro';
+import { getPortfolioContent } from '../../lib/sanity-content.js';
+
+export async function getStaticPaths() {
+  const { projects } = await getPortfolioContent();
+  return projects.map((project, index) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      previous: projects[(index - 1 + projects.length) % projects.length],
+      next: projects[(index + 1) % projects.length],
+      quoteIndex: project.review
+    }
+  }));
+}
+
+const { project, previous, next, quoteIndex } = Astro.props;
+---
+
+<ProjectCasePage project={project} previous={previous} next={next} quoteIndex={quoteIndex} />

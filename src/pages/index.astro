@@ -12,6 +12,9 @@ import Faq from '../components/Faq.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import AskUs from '../components/AskUs.astro';
+import { getHomeContent, getAduTypes } from '../lib/sanity-content.js';
+
+const [home, aduTypes] = await Promise.all([getHomeContent(), getAduTypes()]);
 ---
 
 <Layout 
@@ -21,17 +24,16 @@ import AskUs from '../components/AskUs.astro';
   <Header />
   
   <main class="w-full">
-    <BuildHero />
-    <Types />
-    <Process />
-    <Gallery />
+    <BuildHero stages={home.heroStages} />
+    <Types items={aduTypes} content={home.types} />
+    <Process content={home.process} />
+    <Gallery content={home.gallery} />
     <Calculator />
     <OtherServices />
-    <Reviews />
-    <Faq />
-    <Contact />
+    <Reviews items={home.testimonials} />
+    <Faq content={home.faq} />
+    <Contact title={home.contact.title} kicker={home.contact.kicker} intro={home.contact.intro} image={home.contact.imageUrl} imageAlt={home.contact.imageAlt} />
   </main>
-
   <Footer />
   <AskUs />
 </Layout>

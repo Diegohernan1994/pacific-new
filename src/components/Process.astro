@@ -1,5 +1,5 @@
 ---
-const STEPS = [
+const DEFAULT_STEPS = [
   {
     title: 'Site visit',
     desc: 'We walk your lot, check setbacks, utilities and access, and tell you which ADU types qualify.'
@@ -25,6 +25,10 @@ const STEPS = [
     desc: 'Final inspection, certificate of occupancy and a walkthrough before handover.'
   }
 ];
+const { content = {} } = Astro.props;
+const STEPS = content.steps?.length ? content.steps.map((step) => ({ title: step.title, desc: step.description || step.desc })) : DEFAULT_STEPS;
+const kicker = content.kicker || 'Permit process';
+const title = content.title || 'From first visit to permit, we handle the city';
 ---
 
 <section id="process" class="process-section px-[clamp(20px,4vw,72px)] py-[clamp(88px,10vw,160px)] bg-[#111111] text-white">
@@ -32,10 +36,10 @@ const STEPS = [
   <div class="reveal-item">
     <div class="flex items-center gap-4 text-[12px] font-semibold tracking-[0.24em] uppercase text-[#ff6b6b]">
       <span class="w-14 h-[1px] bg-[#ff6b6b]"></span>
-      <span>Permit process</span>
+        <span>{kicker}</span>
     </div>
     <h2 class="mt-7 font-sans font-semibold text-[clamp(36px,4.6vw,76px)] leading-[0.98] tracking-[-0.015em] uppercase text-white max-w-[1000px] text-balance">
-      From first visit to permit, we handle the city
+      {title}
     </h2>
   </div>
 

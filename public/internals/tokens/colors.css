@@ -1,0 +1,49 @@
+:root{
+/* Brand base */
+--pw-red:#AB0000;            /* sampled from ad offer banners */
+--pw-red-hover:#8F0000;
+--pw-red-press:#740000;
+--pw-red-tint:#F6E5E5;
+--pw-black:#111111;
+--pw-ink:#1C1B1A;
+--pw-white:#FFFFFF;
+/* Warm neutrals (from interior photography: plaster, stone, oak) */
+--pw-stone-50:#F7F5F2;
+--pw-stone-100:#EFECE7;
+--pw-stone-200:#E2DED7;
+--pw-stone-300:#C9C4BB;
+--pw-stone-500:#8C877F;
+--pw-stone-700:#55524D;
+--pw-stone-900:#2B2927;
+/* Semantic status (forms only) */
+--pw-success:#2E6B45;
+--pw-warning:#A86A12;
+--pw-error:#AB0000;
+
+/* Semantic aliases */
+--surface-page:var(--pw-white);
+--surface-alt:var(--pw-stone-50);
+--surface-inverse:var(--pw-black);
+--surface-card:var(--pw-white);
+--surface-offer:var(--pw-red);
+--overlay-photo:rgba(0,0,0,.42);
+--overlay-photo-strong:rgba(0,0,0,.6);
+--overlay-scrim:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.55) 100%); /* @kind color */
+--overlay-capsule:rgba(40,40,40,.45);
+
+--text-primary:var(--pw-ink);
+--text-secondary:var(--pw-stone-700);
+--text-muted:var(--pw-stone-500);
+--text-inverse:var(--pw-white);
+--text-accent:var(--pw-red);
+
+--border-hairline:var(--pw-stone-200);
+--border-strong:var(--pw-ink);
+--border-inverse:rgba(255,255,255,.7);
+
+--action-primary:var(--pw-red);
+--action-primary-hover:var(--pw-red-hover);
+--action-primary-press:var(--pw-red-press);
+--action-secondary:var(--pw-black);
+--focus-ring:rgba(171,0,0,.35);
+}

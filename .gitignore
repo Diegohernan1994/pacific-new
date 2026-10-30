@@ -3,6 +3,7 @@ dist/
 
 # Dependencies
 node_modules/
+.codex-npm-cache/
 
 # Astro cache
 .astro/
@@ -22,3 +23,5 @@ pnpm-debug.log*
 # System Files
 .DS_Store
 Thumbs.db
+
+.vercel
